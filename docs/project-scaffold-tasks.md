@@ -48,6 +48,8 @@ pnpm install
 pnpm --version
 ```
 
+如果 Windows 权限阻止 `pnpm` shim 写入全局 Node.js 目录，但 `corepack pnpm --version` 可用，则本阶段命令使用 `corepack pnpm ...` 执行，不切换到 npm 或 yarn。
+
 ### Task 2: SACP Core
 
 文件：
@@ -159,4 +161,3 @@ git status --short --branch --ignored
 - `.env.example` 只包含 public placeholder。
 - `.env` 未提交。
 - `longju-task.md` 和 `prize-breakdown.png` 仍被忽略。
-

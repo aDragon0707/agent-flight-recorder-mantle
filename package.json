@@ -1,0 +1,16 @@
+{
+  "name": "agent-flight-recorder-mantle",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.6.2",
+  "scripts": {
+    "dev": "corepack pnpm --filter @afr/web dev",
+    "build": "corepack pnpm -r --if-present build",
+    "test": "corepack pnpm -r --if-present test",
+    "lint": "corepack pnpm -r --if-present lint",
+    "typecheck": "corepack pnpm -r --if-present typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

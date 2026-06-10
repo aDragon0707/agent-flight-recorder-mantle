@@ -11,6 +11,7 @@ coverage/
 artifacts/
 cache/
 typechain-types/
+*.tsbuildinfo
 
 # Env and secrets
 .env
@@ -35,4 +36,3 @@ Thumbs.db
 # Local planning scratch files not intended for public repo
 longju-task.md
 prize-breakdown.png
-

@@ -43,13 +43,33 @@ MVP goal:
 - Wallet-based anchor transaction.
 - Mantle Explorer verification link.
 
+## Current Status
+
+This repository is currently in scaffold stage.
+
+Implemented:
+
+- Planning docs.
+- Monorepo workspace.
+- `packages/sacp-core` TypeScript package.
+- `apps/web` Next.js shell.
+- `contracts` Hardhat skeleton.
+
+Not implemented yet:
+
+- Real MetaMask anchor transaction.
+- Deployed Mantle Sepolia contract address.
+- Public demo URL.
+- Demo video.
+
 ## Current Docs
 
 - [PRD v0.1](docs/prd.md)
 - [Engineering Workflow](docs/engineering.md)
 - [Architecture v0.1](docs/architecture.md)
+- [Project Scaffold Tasks](docs/project-scaffold-tasks.md)
 
-## Planned Repository Structure
+## Repository Structure
 
 ```text
 agent-flight-recorder-mantle/
@@ -69,6 +89,40 @@ agent-flight-recorder-mantle/
     demo-script.md
     submission-checklist.md
   README.md
+```
+
+## Local Development
+
+This project uses `pnpm` through Corepack.
+
+On Windows, if `pnpm` is not globally available, use `corepack pnpm`:
+
+```powershell
+corepack prepare pnpm@10 --activate
+corepack pnpm install
+corepack pnpm test
+corepack pnpm build
+```
+
+When `pnpm` is available as a shell command:
+
+```bash
+pnpm install
+pnpm test
+pnpm build
+```
+
+Useful commands:
+
+```bash
+pnpm dev
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build
+pnpm --filter @afr/sacp-core test
+pnpm --filter @afr/web build
+pnpm --filter @afr/contracts test
 ```
 
 ## Technology Decisions
@@ -121,4 +175,3 @@ Before DoraHacks submission, this repo should include:
 - Setup instructions.
 - Architecture overview.
 - Updated DoraHacks BUIDL page.
-
