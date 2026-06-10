@@ -1,0 +1,76 @@
+{
+  "currentSpec": "001-wallet-detection",
+  "items": {
+    "000-scaffold": {
+      "status": "verified",
+      "branch": "feature/project-scaffold",
+      "commit": "f558c1c",
+      "evidence": "docs/evidence/000-scaffold.md",
+      "lastVerified": "2026-06-10"
+    },
+    "001-wallet-detection": {
+      "status": "planned",
+      "branch": "feature/001-wallet-detection",
+      "commit": "",
+      "evidence": "",
+      "lastVerified": ""
+    },
+    "002-wallet-connect": {
+      "status": "planned",
+      "branch": "feature/002-wallet-connect",
+      "commit": "",
+      "evidence": "",
+      "lastVerified": ""
+    },
+    "003-mantle-network-check": {
+      "status": "planned",
+      "branch": "feature/003-mantle-network-check",
+      "commit": "",
+      "evidence": "",
+      "lastVerified": ""
+    },
+    "004-mantle-network-switch": {
+      "status": "planned",
+      "branch": "feature/004-mantle-network-switch",
+      "commit": "",
+      "evidence": "",
+      "lastVerified": ""
+    },
+    "005-contract-deploy": {
+      "status": "planned",
+      "branch": "feature/005-contract-deploy",
+      "commit": "",
+      "evidence": "",
+      "lastVerified": ""
+    },
+    "006-anchor-transaction": {
+      "status": "planned",
+      "branch": "feature/006-anchor-transaction",
+      "commit": "",
+      "evidence": "",
+      "lastVerified": ""
+    },
+    "007-explorer-verification": {
+      "status": "planned",
+      "branch": "feature/007-explorer-verification",
+      "commit": "",
+      "evidence": "",
+      "lastVerified": ""
+    },
+    "008-public-demo-deploy": {
+      "status": "planned",
+      "branch": "feature/008-public-demo-deploy",
+      "commit": "",
+      "evidence": "",
+      "lastVerified": ""
+    },
+    "009-submission-package": {
+      "status": "planned",
+      "branch": "feature/009-submission-package",
+      "commit": "",
+      "evidence": "",
+      "lastVerified": ""
+    }
+  }
+}
+

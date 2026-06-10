@@ -8,7 +8,15 @@
     "build": "corepack pnpm -r --if-present build",
     "test": "corepack pnpm -r --if-present test",
     "lint": "corepack pnpm -r --if-present lint",
-    "typecheck": "corepack pnpm -r --if-present typecheck"
+    "typecheck": "corepack pnpm -r --if-present typecheck",
+    "verify": "corepack pnpm lint && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build",
+    "verify:graph": "powershell -ExecutionPolicy Bypass -File scripts/verify-spec-graph.ps1",
+    "verify:evidence": "powershell -ExecutionPolicy Bypass -File scripts/verify-evidence-freshness.ps1",
+    "verify:secrets": "powershell -ExecutionPolicy Bypass -File scripts/verify-no-secrets.ps1",
+    "verify:scope": "powershell -ExecutionPolicy Bypass -File scripts/verify-worktree-scope.ps1",
+    "verify:docs": "powershell -ExecutionPolicy Bypass -File scripts/verify-doc-sync.ps1",
+    "verify:final": "powershell -ExecutionPolicy Bypass -File scripts/verify-final-acceptance.ps1",
+    "verify:all": "corepack pnpm verify && corepack pnpm verify:graph && corepack pnpm verify:evidence && corepack pnpm verify:secrets && corepack pnpm verify:scope && corepack pnpm verify:docs"
   },
   "devDependencies": {
     "typescript": "^5.8.3"

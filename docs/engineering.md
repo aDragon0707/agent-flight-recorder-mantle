@@ -226,6 +226,20 @@ npm run deploy:mantle-sepolia
 npm run verify:mantle-sepolia
 ```
 
+当前工程使用 Corepack 执行 pnpm。治理门禁命令：
+
+```text
+corepack pnpm verify
+corepack pnpm verify:graph
+corepack pnpm verify:evidence
+corepack pnpm verify:secrets
+corepack pnpm verify:scope
+corepack pnpm verify:docs
+corepack pnpm verify:all
+```
+
+每个任务结束前必须通过 `corepack pnpm verify:all`。
+
 文档阶段的验证方式：
 
 ```text
@@ -244,12 +258,19 @@ npm run verify:mantle-sepolia
 - `docs/engineering.md`
 - `docs/architecture.md`
 - `README.md` 初版
+- `AGENTS.md`
+- `specs/spec-graph.json`
+- `specs/status.json`
+- `specs/task-board.md`
+- `docs/evidence/`
+- `.github/workflows/ci.yml`
 
 验收：
 
 - 范围清楚。
 - 技术栈清楚。
 - 提交清单清楚。
+- `corepack pnpm verify:all` 通过。
 
 ### Phase 2: 仓库初始化
 

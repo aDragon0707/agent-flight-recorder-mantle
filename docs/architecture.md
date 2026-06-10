@@ -47,6 +47,8 @@ The verifiable diagnosis result hash is written on-chain.
 - [x] `apps/web` 已实现三列 workbench shell。
 - [x] `contracts` 已实现 `ReceiptAnchor.sol` 与基础测试。
 - [x] root `lint`、`typecheck`、`test`、`build` 已通过。
+- [x] Governance gate files 已加入，包括 specs、evidence、CI、verify scripts。
+- [x] Verified foundation spec: `000-scaffold`。
 - [ ] `apps/web` 尚未接真实 MetaMask transaction。
 - [ ] `ReceiptAnchor` 尚未部署到 Mantle Sepolia。
 - [ ] README 尚未包含 deployed contract address、demo URL、explorer link。
@@ -526,4 +528,7 @@ pnpm workspace
 - 产品范围以 `docs/prd.md` 为准。
 - Git 和发布流程以 `docs/engineering.md` 为准。
 - 工程模块边界以本文档为准。
+- 任务依赖以 `specs/spec-graph.json` 为准。
+- 任务状态以 `specs/status.json` 和 `specs/task-board.md` 为准。
+- 验收证据以 `docs/evidence/` 为准。
 - 若时间冲突，优先完成真实 SACP receipt + Mantle Sepolia anchor，而不是视觉细节。

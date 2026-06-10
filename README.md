@@ -54,6 +54,7 @@ Implemented:
 - `packages/sacp-core` TypeScript package.
 - `apps/web` Next.js shell.
 - `contracts` Hardhat skeleton.
+- Governance gates: specs, task board, evidence ledger, verify scripts, CI, and PR template.
 
 Not implemented yet:
 
@@ -68,6 +69,9 @@ Not implemented yet:
 - [Engineering Workflow](docs/engineering.md)
 - [Architecture v0.1](docs/architecture.md)
 - [Project Scaffold Tasks](docs/project-scaffold-tasks.md)
+- [Task Board](specs/task-board.md)
+- [Project Acceptance Ledger](docs/project-acceptance.md)
+- [Handoff](docs/handoff.md)
 
 ## Repository Structure
 
@@ -88,6 +92,12 @@ agent-flight-recorder-mantle/
     architecture.md
     demo-script.md
     submission-checklist.md
+  specs/
+    spec-graph.json
+    status.json
+    task-board.md
+    000-scaffold-review.md
+    001-wallet-detection.md
   README.md
 ```
 
@@ -123,6 +133,26 @@ pnpm build
 pnpm --filter @afr/sacp-core test
 pnpm --filter @afr/web build
 pnpm --filter @afr/contracts test
+```
+
+Governance checks:
+
+```bash
+corepack pnpm verify:all
+corepack pnpm verify:graph
+corepack pnpm verify:evidence
+corepack pnpm verify:secrets
+corepack pnpm verify:scope
+corepack pnpm verify:docs
+```
+
+Before starting a new task, read:
+
+```text
+AGENTS.md
+specs/status.json
+specs/task-board.md
+docs/handoff.md
 ```
 
 ## Technology Decisions
