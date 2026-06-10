@@ -38,6 +38,20 @@ AI/SACP diagnosis runs off-chain.
 The verifiable diagnosis result hash is written on-chain.
 ```
 
+### Implementation Status
+
+本小节只记录当前工程实现状态，不扩大架构范围。
+
+- [x] Root `pnpm workspace` scaffold 已完成。
+- [x] `packages/sacp-core` 已实现最小接口与测试。
+- [x] `apps/web` 已实现三列 workbench shell。
+- [x] `contracts` 已实现 `ReceiptAnchor.sol` 与基础测试。
+- [x] root `lint`、`typecheck`、`test`、`build` 已通过。
+- [ ] `apps/web` 尚未接真实 MetaMask transaction。
+- [ ] `ReceiptAnchor` 尚未部署到 Mantle Sepolia。
+- [ ] README 尚未包含 deployed contract address、demo URL、explorer link。
+- [ ] DoraHacks submission materials 尚未完成。
+
 ## 2. System Context
 
 MVP 由四个核心部分组成：
@@ -513,4 +527,3 @@ pnpm workspace
 - Git 和发布流程以 `docs/engineering.md` 为准。
 - 工程模块边界以本文档为准。
 - 若时间冲突，优先完成真实 SACP receipt + Mantle Sepolia anchor，而不是视觉细节。
-
