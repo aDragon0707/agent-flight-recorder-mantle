@@ -1,19 +1,26 @@
-# Task Board
+# 任务板
 
-| ID | Task | Block | Status | Branch | Evidence | Docs Sync |
+| 编号 | 任务 | 板块 | 状态 | 分支 | 证据 | 文档同步 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 000-scaffold | Project scaffold | foundation | verified | `feature/project-scaffold` | `docs/evidence/000-scaffold.md` | PRD, Architecture, README |
-| 001-wallet-detection | Wallet detection | wallet | planned | `feature/001-wallet-detection` | - | - |
-| 002-wallet-connect | Wallet connect | wallet | planned | `feature/002-wallet-connect` | - | - |
-| 003-mantle-network-check | Mantle Sepolia network check | wallet | planned | `feature/003-mantle-network-check` | - | - |
-| 004-mantle-network-switch | Mantle Sepolia network switch | wallet | planned | `feature/004-mantle-network-switch` | - | - |
-| 005-contract-deploy | ReceiptAnchor deployment | contract | planned | `feature/005-contract-deploy` | - | - |
-| 006-anchor-transaction | Anchor transaction | anchor | planned | `feature/006-anchor-transaction` | - | - |
-| 007-explorer-verification | Explorer verification | anchor | planned | `feature/007-explorer-verification` | - | - |
-| 008-public-demo-deploy | Public demo deployment | submission | planned | `feature/008-public-demo-deploy` | - | - |
-| 009-submission-package | DoraHacks submission package | submission | planned | `feature/009-submission-package` | - | - |
+| 000-scaffold | 项目骨架 | 基础 | 已验证 | `feature/project-scaffold` | `docs/evidence/000-scaffold.md` | PRD、架构、README |
+| 001-wallet-detection | 钱包检测 | 钱包 | 计划中 | `feature/001-wallet-detection` | - | - |
+| 002-wallet-connect | 钱包连接 | 钱包 | 计划中 | `feature/002-wallet-connect` | - | - |
+| 003-mantle-network-check | Mantle Sepolia 网络检查 | 钱包 | 计划中 | `feature/003-mantle-network-check` | - | - |
+| 004-mantle-network-switch | Mantle Sepolia 网络切换 | 钱包 | 计划中 | `feature/004-mantle-network-switch` | - | - |
+| 005-contract-deploy | ReceiptAnchor 合约部署 | 合约 | 计划中 | `feature/005-contract-deploy` | - | - |
+| 006-anchor-transaction | 上链锚定交易 | 上链 | 计划中 | `feature/006-anchor-transaction` | - | - |
+| 007-explorer-verification | 浏览器验证 | 上链 | 计划中 | `feature/007-explorer-verification` | - | - |
+| 008-public-demo-deploy | 公开 demo 部署 | 提交 | 计划中 | `feature/008-public-demo-deploy` | - | - |
+| 009-submission-package | DoraHacks 提交材料 | 提交 | 计划中 | `feature/009-submission-package` | - | - |
 
-## Rule
+## 规则
 
-`status.json` is the machine-readable source. This board must stay aligned with it.
+`status.json` 是机器可读状态源。本任务板是人工阅读视图，必须与 `status.json` 保持一致。
 
+状态映射：
+
+- `计划中` = `planned`
+- `进行中` = `in_progress`
+- `已实现` = `implemented`
+- `已验证` = `verified`
+- `已阻塞` = `blocked`

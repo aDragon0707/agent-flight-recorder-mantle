@@ -17,13 +17,27 @@ foreach ($file in $requiredFiles) {
   }
 }
 
-$prd = Get-Content -Raw -Path "docs/prd.md"
-$architecture = Get-Content -Raw -Path "docs/architecture.md"
-$readme = Get-Content -Raw -Path "README.md"
-$board = Get-Content -Raw -Path "specs/task-board.md"
-$graph = Get-Content -Raw -Path "specs/spec-graph.json" | ConvertFrom-Json
-$status = Get-Content -Raw -Path "specs/status.json" | ConvertFrom-Json
-$handoff = Get-Content -Raw -Path "docs/handoff.md"
+$prd = Get-Content -Raw -Encoding utf8 -Path "docs/prd.md"
+$architecture = Get-Content -Raw -Encoding utf8 -Path "docs/architecture.md"
+$readme = Get-Content -Raw -Encoding utf8 -Path "README.md"
+$board = Get-Content -Raw -Encoding utf8 -Path "specs/task-board.md"
+$graph = Get-Content -Raw -Encoding utf8 -Path "specs/spec-graph.json" | ConvertFrom-Json
+$status = Get-Content -Raw -Encoding utf8 -Path "specs/status.json" | ConvertFrom-Json
+$handoff = Get-Content -Raw -Encoding utf8 -Path "docs/handoff.md"
+
+$statusAliases = @{
+  "planned" = "planned"
+  "in_progress" = "in_progress"
+  "implemented" = "implemented"
+  "verified" = "verified"
+  "blocked" = "blocked"
+}
+
+$statusAliases[[string]::Concat([char]0x8BA1, [char]0x5212, [char]0x4E2D)] = "planned"
+$statusAliases[[string]::Concat([char]0x8FDB, [char]0x884C, [char]0x4E2D)] = "in_progress"
+$statusAliases[[string]::Concat([char]0x5DF2, [char]0x5B9E, [char]0x73B0)] = "implemented"
+$statusAliases[[string]::Concat([char]0x5DF2, [char]0x9A8C, [char]0x8BC1)] = "verified"
+$statusAliases[[string]::Concat([char]0x5DF2, [char]0x963B, [char]0x585E)] = "blocked"
 
 if ($prd -notmatch "Implementation Status") {
   throw "PRD is missing Implementation Status"
@@ -81,8 +95,13 @@ foreach ($spec in $graph.specs) {
   }
 
   $row = $boardRows[$id]
+  $rowStatus = $statusAliases[$row.Status]
 
-  if ($row.Status -ne $item.status) {
+  if (!$rowStatus) {
+    throw "Task board status is not recognized for ${id}: $($row.Status)"
+  }
+
+  if ($rowStatus -ne $item.status) {
     throw "Task board status mismatch for $id. Board=$($row.Status), status.json=$($item.status)"
   }
 
