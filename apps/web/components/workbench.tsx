@@ -8,9 +8,25 @@ import {
   hashReceipt
 } from "@afr/sacp-core";
 import { useEffect, useMemo, useState } from "react";
+import {
+  connectInjectedWallet,
+  type EthereumRequestProvider,
+  type WalletConnectionResult
+} from "@/lib/wallet-connect";
 import { detectInjectedWallet, type WalletDetectionState } from "@/lib/wallet-detection";
 
 const createdAt = "2026-06-10T00:00:00.000Z";
+
+type WalletConnectionViewState = WalletConnectionResult | { status: "idle" | "connecting" };
+
+function isEthereumRequestProvider(provider: unknown): provider is EthereumRequestProvider {
+  return (
+    typeof provider === "object" &&
+    provider !== null &&
+    "request" in provider &&
+    typeof (provider as { request?: unknown }).request === "function"
+  );
+}
 
 export function Workbench() {
   const [sampleId, setSampleId] = useState(demoSamples[0].id);
@@ -19,6 +35,9 @@ export function Workbench() {
   const [walletDetection, setWalletDetection] = useState<WalletDetectionState>(() =>
     detectInjectedWallet({})
   );
+  const [walletConnection, setWalletConnection] = useState<WalletConnectionViewState>({
+    status: "idle"
+  });
 
   const result = useMemo(() => {
     try {
@@ -47,6 +66,18 @@ export function Workbench() {
     const nextSample = demoSamples.find((item) => item.id === nextId) ?? demoSamples[0];
     setSampleId(nextSample.id);
     setInput(nextSample.input);
+  }
+
+  async function connectWallet() {
+    const host = window as unknown as { ethereum?: unknown };
+
+    if (!walletDetection.detected || !isEthereumRequestProvider(host.ethereum)) {
+      setWalletConnection({ status: "failed" });
+      return;
+    }
+
+    setWalletConnection({ status: "connecting" });
+    setWalletConnection(await connectInjectedWallet(host.ethereum));
   }
 
   useEffect(() => {
@@ -148,6 +179,36 @@ export function Workbench() {
                 runtime.
               </p>
               <p className="mt-2 text-xs text-ink/50">Providers: {walletDetection.providerCount}</p>
+            </div>
+            <div className="rounded border border-line bg-[#fbfbf8] p-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p className="font-medium">
+                    {walletConnection.status === "connected"
+                      ? "Wallet connected"
+                      : "Wallet connection"}
+                  </p>
+                  <p className="mt-1 text-xs text-ink/60">
+                    {!walletDetection.detected
+                      ? "Install or enable an injected wallet to connect."
+                      : walletConnection.status === "connected"
+                        ? walletConnection.shortAddress
+                        : walletConnection.status === "rejected"
+                          ? "Wallet connection rejected. No account was connected."
+                          : walletConnection.status === "failed"
+                            ? "Wallet connection failed."
+                            : "Ready"}
+                  </p>
+                </div>
+                <button
+                  className="rounded border border-signal bg-signal px-3 py-2 text-xs font-semibold text-white disabled:cursor-not-allowed disabled:border-line disabled:bg-ink/10 disabled:text-ink/40"
+                  disabled={!walletDetection.detected || walletConnection.status === "connecting"}
+                  type="button"
+                  onClick={connectWallet}
+                >
+                  {walletConnection.status === "connecting" ? "Connecting..." : "Connect wallet"}
+                </button>
+              </div>
             </div>
             <dl className="grid gap-2 text-xs">
               <div className="flex justify-between gap-3">
