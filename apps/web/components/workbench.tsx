@@ -9,6 +9,11 @@ import {
 } from "@afr/sacp-core";
 import { useEffect, useMemo, useState } from "react";
 import {
+  checkMantleSepoliaNetwork,
+  type EthereumChainProvider,
+  type MantleNetworkStatus
+} from "@/lib/mantle-network";
+import {
   connectInjectedWallet,
   type EthereumRequestProvider,
   type WalletConnectionResult
@@ -19,7 +24,21 @@ const createdAt = "2026-06-10T00:00:00.000Z";
 
 type WalletConnectionViewState = WalletConnectionResult | { status: "idle" | "connecting" };
 
+type MantleNetworkViewState = {
+  status: MantleNetworkStatus;
+  chainId: string | null;
+};
+
 function isEthereumRequestProvider(provider: unknown): provider is EthereumRequestProvider {
+  return (
+    typeof provider === "object" &&
+    provider !== null &&
+    "request" in provider &&
+    typeof (provider as { request?: unknown }).request === "function"
+  );
+}
+
+function isEthereumChainProvider(provider: unknown): provider is EthereumChainProvider {
   return (
     typeof provider === "object" &&
     provider !== null &&
@@ -37,6 +56,10 @@ export function Workbench() {
   );
   const [walletConnection, setWalletConnection] = useState<WalletConnectionViewState>({
     status: "idle"
+  });
+  const [mantleNetwork, setMantleNetwork] = useState<MantleNetworkViewState>({
+    status: "unchecked",
+    chainId: null
   });
 
   const result = useMemo(() => {
@@ -78,6 +101,19 @@ export function Workbench() {
 
     setWalletConnection({ status: "connecting" });
     setWalletConnection(await connectInjectedWallet(host.ethereum));
+    setMantleNetwork({ status: "unchecked", chainId: null });
+  }
+
+  async function checkNetwork() {
+    const host = window as unknown as { ethereum?: unknown };
+
+    if (!isEthereumChainProvider(host.ethereum)) {
+      setMantleNetwork({ status: "not_available", chainId: null });
+      return;
+    }
+
+    setMantleNetwork({ status: "checking", chainId: null });
+    setMantleNetwork(await checkMantleSepoliaNetwork(host.ethereum));
   }
 
   useEffect(() => {
@@ -210,16 +246,50 @@ export function Workbench() {
                 </button>
               </div>
             </div>
-            <dl className="grid gap-2 text-xs">
-              <div className="flex justify-between gap-3">
-                <dt className="text-ink/50">Network</dt>
-                <dd>Mantle Sepolia</dd>
+            <div className="rounded border border-line bg-[#fbfbf8] p-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p className="font-medium">Network check</p>
+                  <p className="mt-1 text-xs text-ink/60">
+                    {mantleNetwork.status === "unchecked"
+                      ? "Not checked"
+                      : mantleNetwork.status === "checking"
+                        ? "Checking current wallet network..."
+                        : mantleNetwork.status === "mantle_sepolia"
+                          ? "Mantle Sepolia verified."
+                          : mantleNetwork.status === "wrong_network"
+                            ? "Wrong network. Mantle Sepolia is required."
+                            : mantleNetwork.status === "not_available"
+                              ? "Injected wallet provider is not available."
+                              : "Network check failed."}
+                  </p>
+                </div>
+                <button
+                  className="rounded border border-signal bg-signal px-3 py-2 text-xs font-semibold text-white disabled:cursor-not-allowed disabled:border-line disabled:bg-ink/10 disabled:text-ink/40"
+                  disabled={
+                    walletConnection.status !== "connected" || mantleNetwork.status === "checking"
+                  }
+                  type="button"
+                  onClick={checkNetwork}
+                >
+                  {mantleNetwork.status === "checking" ? "Checking..." : "Check network"}
+                </button>
               </div>
-              <div className="flex justify-between gap-3">
-                <dt className="text-ink/50">Chain ID</dt>
-                <dd>5003</dd>
-              </div>
-            </dl>
+              <dl className="mt-3 grid gap-2 text-xs">
+                <div className="flex justify-between gap-3">
+                  <dt className="text-ink/50">Required network</dt>
+                  <dd>Mantle Sepolia</dd>
+                </div>
+                <div className="flex justify-between gap-3">
+                  <dt className="text-ink/50">Required chain ID</dt>
+                  <dd>5003 / 0x138b</dd>
+                </div>
+                <div className="flex justify-between gap-3">
+                  <dt className="text-ink/50">Current chain ID</dt>
+                  <dd>{mantleNetwork.chainId ?? "Not checked"}</dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </section>
       </section>
