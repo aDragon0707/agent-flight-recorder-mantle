@@ -1,5 +1,5 @@
 {
-  "currentSpec": "002-wallet-connect",
+  "currentSpec": "003-mantle-network-check",
   "items": {
     "000-scaffold": {
       "status": "verified",
@@ -16,11 +16,11 @@
       "lastVerified": "2026-06-11"
     },
     "002-wallet-connect": {
-      "status": "planned",
+      "status": "verified",
       "branch": "feature/002-wallet-connect",
-      "commit": "",
-      "evidence": "",
-      "lastVerified": ""
+      "commit": "92b3d48",
+      "evidence": "docs/evidence/002-wallet-connect.md",
+      "lastVerified": "2026-06-11"
     },
     "003-mantle-network-check": {
       "status": "planned",

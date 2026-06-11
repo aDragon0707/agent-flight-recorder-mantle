@@ -4,7 +4,7 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | 000-scaffold | 项目骨架 | 基础 | 已验证 | `feature/project-scaffold` | `docs/evidence/000-scaffold.md` | PRD、架构、README |
 | 001-wallet-detection | 钱包检测 | 钱包 | 已验证 | `feature/001-wallet-detection` | `docs/evidence/001-wallet-detection.md` | status、task-board、evidence、handoff、architecture、project-acceptance |
-| 002-wallet-connect | 钱包连接 | 钱包 | 计划中 | `feature/002-wallet-connect` | - | - |
+| 002-wallet-connect | 钱包连接 | 钱包 | 已验证 | `feature/002-wallet-connect` | `docs/evidence/002-wallet-connect.md` | status、task-board、evidence、handoff、architecture、project-acceptance |
 | 003-mantle-network-check | Mantle Sepolia 网络检查 | 钱包 | 计划中 | `feature/003-mantle-network-check` | - | - |
 | 004-mantle-network-switch | Mantle Sepolia 网络切换 | 钱包 | 计划中 | `feature/004-mantle-network-switch` | - | - |
 | 005-contract-deploy | ReceiptAnchor 合约部署 | 合约 | 计划中 | `feature/005-contract-deploy` | - | - |

@@ -50,6 +50,7 @@ The verifiable diagnosis result hash is written on-chain.
 - [x] Governance gate files 已加入，包括 specs、evidence、CI、verify scripts。
 - [x] Verified foundation spec: `000-scaffold`。
 - [x] Verified wallet detection spec: `001-wallet-detection`。`apps/web` 只读取 injected `window.ethereum` 是否存在，并显示 detected / not detected；不连接钱包、不切网络、不发交易。
+- [x] Verified wallet connect spec: `002-wallet-connect`。`apps/web` 只在用户点击 `Connect wallet` 后调用 `eth_requestAccounts`，并显示 connected / rejected / failed 状态；不检查网络、不切网络、不发交易、不持久化地址。
 - [ ] `apps/web` 尚未接真实 MetaMask transaction。
 - [ ] `ReceiptAnchor` 尚未部署到 Mantle Sepolia。
 - [ ] README 尚未包含 deployed contract address、demo URL、explorer link。
