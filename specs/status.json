@@ -16,7 +16,7 @@
       "lastVerified": "2026-06-11"
     },
     "002-wallet-connect": {
-      "status": "planned",
+      "status": "in_progress",
       "branch": "feature/002-wallet-connect",
       "commit": "",
       "evidence": "",
