@@ -1,5 +1,5 @@
 {
-  "currentSpec": "001-wallet-detection",
+  "currentSpec": "002-wallet-connect",
   "items": {
     "000-scaffold": {
       "status": "verified",

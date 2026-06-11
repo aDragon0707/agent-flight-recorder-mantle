@@ -3,7 +3,7 @@
 ## Current State
 
 - Repository: `aDragon0707/agent-flight-recorder-mantle`
-- Current branch: `feature/001-wallet-detection`
+- Current branch: `feature/project-scaffold`
 - Current verified spec: `001-wallet-detection`
 - Next spec: `002-wallet-connect`
 
@@ -52,8 +52,9 @@ Read these first:
 1. `AGENTS.md`
 2. `specs/status.json`
 3. `specs/task-board.md`
-4. `specs/001-wallet-detection.md`
-5. `docs/architecture.md`
+4. `docs/agent-loop.md`
+5. `specs/002-wallet-connect.md`
+6. `docs/architecture.md`
 
 Then run:
 

@@ -68,6 +68,7 @@ Not implemented yet:
 - [PRD v0.1](docs/prd.md)
 - [Engineering Workflow](docs/engineering.md)
 - [Architecture v0.1](docs/architecture.md)
+- [Agent Execution Loop](docs/agent-loop.md)
 - [Project Scaffold Tasks](docs/project-scaffold-tasks.md)
 - [Task Board](specs/task-board.md)
 - [Project Acceptance Ledger](docs/project-acceptance.md)

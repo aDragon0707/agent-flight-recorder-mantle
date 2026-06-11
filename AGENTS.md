@@ -9,6 +9,7 @@ Before changing files, read:
 - `specs/status.json`
 - `specs/task-board.md`
 - The current spec file under `specs/`
+- `docs/agent-loop.md`
 - `docs/handoff.md`
 - `docs/architecture.md`
 

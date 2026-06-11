@@ -119,6 +119,8 @@ spec -> feature branch -> implementation commit -> verification/evidence commit 
 - 任务结束前必须运行 `corepack pnpm progress` 和 `corepack pnpm verify:all`。
 - `docs/project-acceptance.md` 是最终交付总账本，必须随 verified task 同步。
 
+完整执行轮次见 `docs/agent-loop.md`。任何 agent 执行 spec task 前必须按该 loop 做 preflight、启动任务、验证、证据同步、推送和合并回基线。
+
 ## 5. PR / 合并 Checklist
 
 即使是单人开发，也建议用 PR checklist 做自检。
