@@ -1,5 +1,5 @@
 {
-  "currentSpec": "002-wallet-connect",
+  "currentSpec": "003-mantle-network-check",
   "items": {
     "000-scaffold": {
       "status": "verified",

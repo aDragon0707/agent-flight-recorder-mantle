@@ -40,7 +40,7 @@ Latest governance dry-run checks:
 
 - No real MetaMask wallet transaction.
 - No network check or network switch has been implemented.
-- No wallet address is stored.
+- No wallet address is persisted; the connected address is held only in client state for display.
 - No Mantle Sepolia contract deployment.
 - No explorer verification.
 - No public frontend deployment.
