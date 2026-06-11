@@ -6,7 +6,7 @@ This ledger tracks end-to-end readiness for the DoraHacks submission.
 | --- | --- | --- | --- |
 | Scaffold | verified | `docs/evidence/000-scaffold.md` | 2026-06-10 |
 | SACP Core | scaffolded | `docs/evidence/000-scaffold.md` | 2026-06-10 |
-| Wallet Detection | planned | - | - |
+| Wallet Detection | verified | `docs/evidence/001-wallet-detection.md` | 2026-06-11 |
 | Wallet Connect | planned | - | - |
 | Mantle Network Check | planned | - | - |
 | Mantle Network Switch | planned | - | - |
@@ -26,4 +26,3 @@ This ledger tracks end-to-end readiness for the DoraHacks submission.
 - [ ] Demo video is at least 2 minutes.
 - [ ] DoraHacks BUIDL page is updated.
 - [ ] `corepack pnpm verify:all` passes.
-
