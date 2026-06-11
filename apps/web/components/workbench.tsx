@@ -7,7 +7,8 @@ import {
   diagnoseAgentOutput,
   hashReceipt
 } from "@afr/sacp-core";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { detectInjectedWallet, type WalletDetectionState } from "@/lib/wallet-detection";
 
 const createdAt = "2026-06-10T00:00:00.000Z";
 
@@ -15,6 +16,9 @@ export function Workbench() {
   const [sampleId, setSampleId] = useState(demoSamples[0].id);
   const sample = demoSamples.find((item) => item.id === sampleId) ?? demoSamples[0];
   const [input, setInput] = useState(sample.input);
+  const [walletDetection, setWalletDetection] = useState<WalletDetectionState>(() =>
+    detectInjectedWallet({})
+  );
 
   const result = useMemo(() => {
     try {
@@ -44,6 +48,11 @@ export function Workbench() {
     setSampleId(nextSample.id);
     setInput(nextSample.input);
   }
+
+  useEffect(() => {
+    const host = window as unknown as { ethereum?: unknown };
+    setWalletDetection(detectInjectedWallet({ ethereum: host.ethereum }));
+  }, []);
 
   return (
     <main className="min-h-screen px-5 py-6 md:px-8">
@@ -122,11 +131,23 @@ export function Workbench() {
               </p>
             </div>
             <div className="rounded border border-line bg-[#fbfbf8] p-3">
-              <p className="font-medium">Wallet anchor placeholder</p>
+              <div className="flex items-center justify-between gap-3">
+                <p className="font-medium">Wallet detection</p>
+                <span
+                  className={
+                    walletDetection.detected
+                      ? "rounded-full border border-signal/40 bg-signal/10 px-2 py-1 text-xs text-signal"
+                      : "rounded-full border border-danger/40 bg-danger/10 px-2 py-1 text-xs text-danger"
+                  }
+                >
+                  {walletDetection.detected ? "Detected" : "Not detected"}
+                </span>
+              </div>
               <p className="mt-2 leading-6 text-ink/70">
-                The scaffold reserves the Mantle anchor panel. Real MetaMask transaction wiring comes
-                after the core, web, and contract packages are stable.
+                {walletDetection.label}. Detection only reads the injected provider from the browser
+                runtime.
               </p>
+              <p className="mt-2 text-xs text-ink/50">Providers: {walletDetection.providerCount}</p>
             </div>
             <dl className="grid gap-2 text-xs">
               <div className="flex justify-between gap-3">
@@ -144,4 +165,3 @@ export function Workbench() {
     </main>
   );
 }
-
