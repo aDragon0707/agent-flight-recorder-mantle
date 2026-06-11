@@ -23,7 +23,7 @@
       "lastVerified": "2026-06-11"
     },
     "003-mantle-network-check": {
-      "status": "planned",
+      "status": "in_progress",
       "branch": "feature/003-mantle-network-check",
       "commit": "",
       "evidence": "",
