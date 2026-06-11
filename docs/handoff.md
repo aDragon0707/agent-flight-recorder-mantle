@@ -20,6 +20,7 @@
 ## Last Verified Commands
 
 ```bash
+corepack pnpm progress
 corepack pnpm verify:all
 ```
 
@@ -48,5 +49,11 @@ Read these first:
 3. `specs/task-board.md`
 4. `specs/001-wallet-detection.md`
 5. `docs/architecture.md`
+
+Then run:
+
+```bash
+corepack pnpm progress
+```
 
 Do not start wallet code until governance scripts pass.

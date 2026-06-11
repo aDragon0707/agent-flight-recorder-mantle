@@ -19,7 +19,7 @@ Before changing files, read:
 - Every verified task must have an evidence file.
 - Every verified task must update `specs/status.json` and `specs/task-board.md`.
 - Every completed block must update the affected project docs.
-- Run `corepack pnpm verify:all` before claiming a task is complete.
+- Run `corepack pnpm progress` and `corepack pnpm verify:all` before claiming a task is complete.
 - Do not commit `.env`, private keys, seed phrases, wallet passwords, API keys, cookies, tokens, or sessions.
 - Do not commit `longju-task.md`, `prize-breakdown.png`, `node_modules`, `.next`, `dist`, `artifacts`, `cache`, `typechain-types`, or `*.tsbuildinfo`.
 
@@ -60,3 +60,15 @@ Every verified task must have:
 - Known limits
 - Next task
 
+## Human Progress View
+
+Use `corepack pnpm progress` when resuming work, before handing off to a new window, and before reporting task completion. The output is a Chinese human-readable view of:
+
+- Current branch
+- Current spec
+- Task chain
+- Technical explanation
+- Plain-language explanation
+- Evidence status
+- Human decision points
+- Project acceptance ledger
