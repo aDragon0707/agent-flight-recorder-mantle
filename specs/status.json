@@ -30,7 +30,7 @@
       "lastVerified": "2026-06-12"
     },
     "004-mantle-network-switch": {
-      "status": "in_progress",
+      "status": "implemented",
       "branch": "feature/004-mantle-network-switch",
       "commit": "",
       "evidence": "",
