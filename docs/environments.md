@@ -13,7 +13,7 @@ corepack pnpm verify:all
 
 ## Mantle Sepolia
 
-Status: deploy prepared (005A)
+Status: deployed (005B)
 
 ```text
 RPC: https://rpc.sepolia.mantle.xyz
@@ -32,7 +32,7 @@ Deploy preparation (005A):
 Contract address:
 
 ```text
-not deployed
+0x69E07961d8c022B81c1c968ef7C1a3955E8D182b
 ```
 
 ## Public Demo
