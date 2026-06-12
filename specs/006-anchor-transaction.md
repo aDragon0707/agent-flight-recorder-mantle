@@ -1,6 +1,6 @@
 # Spec 006: Anchor Transaction
 
-Status: implemented
+Status: verified
 
 ## Goal
 

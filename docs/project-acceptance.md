@@ -11,7 +11,7 @@ This ledger tracks end-to-end readiness for the DoraHacks submission.
 | Mantle Network Check | verified | `docs/evidence/003-mantle-network-check.md` | 2026-06-12 |
 | Mantle Network Switch | verified | `docs/evidence/004-mantle-network-switch.md` | 2026-06-12 |
 | Contract Deploy | verified | `docs/evidence/005-contract-deploy.md` | 2026-06-12 |
-| Anchor Transaction | planned | - | - |
+| Anchor Transaction | verified | `docs/evidence/006-anchor-transaction.md` | 2026-06-12 |
 | Explorer Verification | planned | - | - |
 | Public Demo Deploy | planned | - | - |
 | Demo Video | planned | - | - |
