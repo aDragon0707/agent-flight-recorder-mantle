@@ -280,6 +280,15 @@ export function Workbench() {
     setWalletDetection(detectInjectedWallet({ ethereum: host.ethereum }));
   }, []);
 
+  const connectedAddress =
+    walletConnection.status === "connected" ? walletConnection.address : null;
+
+  useEffect(() => {
+    // Clear any stale anchor result when the current anchor target changes:
+    // a different receipt hash, a different connected wallet, or leaving Mantle Sepolia.
+    setAnchorState({ status: "idle", txHash: null });
+  }, [result.receiptHash, connectedAddress, mantleNetwork.status]);
+
   return (
     <main className="min-h-screen px-5 py-6 md:px-8">
       <header className="mx-auto mb-6 max-w-7xl">

@@ -186,7 +186,11 @@ foreach ($spec in $graph.specs) {
   $number = ($spec.id -split "-")[0]
   $evidence = $item.evidence
   if ([string]::IsNullOrWhiteSpace($evidence)) {
-    $evidenceText = "暂无，因为还没开始实现。"
+    if ($item.status -eq "implemented") {
+      $evidenceText = "暂无。代码已实现，等待真实交易/人工验收后才能生成 verified evidence。"
+    } else {
+      $evidenceText = "暂无，因为还没开始实现。"
+    }
   } elseif (Test-Path $evidence) {
     $evidenceText = "$evidence（存在）"
   } else {
