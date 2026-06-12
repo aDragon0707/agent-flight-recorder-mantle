@@ -37,7 +37,7 @@
       "lastVerified": "2026-06-12"
     },
     "005-contract-deploy": {
-      "status": "planned",
+      "status": "in_progress",
       "branch": "feature/005-contract-deploy",
       "commit": "",
       "evidence": "",

@@ -3,9 +3,10 @@
 ## Current State
 
 - Repository: `aDragon0707/agent-flight-recorder-mantle`
-- Current branch: `feature/004-mantle-network-switch`
+- Current branch: `feature/005-contract-deploy`
 - Current verified spec: `004-mantle-network-switch`
-- Next spec: `005-contract-deploy`
+- Current spec: `005-contract-deploy`
+- Next spec: `006-anchor-transaction`
 
 ## Completed
 
