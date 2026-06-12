@@ -2,6 +2,7 @@ $ErrorActionPreference = "Stop"
 
 $files = git ls-files
 $patterns = @(
+  "(?i)MNEMONIC\s*=[ \t]*['""]?[A-Za-z]+(?:[ \t]+[A-Za-z]+){2,}['""]?",
   "(?i)(PRIVATE_KEY|MANTLE_SEPOLIA_PRIVATE_KEY|MNEMONIC|SECRET|API_KEY)\s*=[ \t]*['""]?[A-Za-z0-9_./+=:-]{12,}['""]?",
   "gho_[A-Za-z0-9_]+",
   "github_pat_[A-Za-z0-9_]+",
@@ -37,4 +38,3 @@ foreach ($file in $files) {
 }
 
 Write-Host "verify-no-secrets: pass"
-
