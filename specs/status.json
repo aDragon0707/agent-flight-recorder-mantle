@@ -1,5 +1,5 @@
 {
-  "currentSpec": "003-mantle-network-check",
+  "currentSpec": "004-mantle-network-switch",
   "items": {
     "000-scaffold": {
       "status": "verified",
@@ -23,11 +23,11 @@
       "lastVerified": "2026-06-11"
     },
     "003-mantle-network-check": {
-      "status": "implemented",
+      "status": "verified",
       "branch": "feature/003-mantle-network-check",
-      "commit": "",
-      "evidence": "",
-      "lastVerified": ""
+      "commit": "d586111",
+      "evidence": "docs/evidence/003-mantle-network-check.md",
+      "lastVerified": "2026-06-12"
     },
     "004-mantle-network-switch": {
       "status": "planned",

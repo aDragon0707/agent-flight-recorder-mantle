@@ -3,9 +3,9 @@
 ## Current State
 
 - Repository: `aDragon0707/agent-flight-recorder-mantle`
-- Current branch: `feature/002-wallet-connect`
-- Current verified spec: `002-wallet-connect`
-- Next spec: `003-mantle-network-check`
+- Current branch: `feature/003-mantle-network-check`
+- Current verified spec: `003-mantle-network-check`
+- Next spec: `004-mantle-network-switch`
 
 ## Completed
 
@@ -18,6 +18,7 @@
 - Governance gate plan and ledgers.
 - Wallet detection: web UI reads only injected `window.ethereum` presence and renders detected / not detected state.
 - Wallet connect: web UI requests `eth_requestAccounts` only after the user clicks `Connect wallet`, then displays connected / rejected / failed states without persistence.
+- Mantle network check: after wallet connection, web UI checks the current wallet chain only when the user clicks `Check network`, calls only `eth_chainId`, accepts `0x138b` case-insensitively, displays the current chain id, and reports wrong network without switching.
 
 ## Last Verified Commands
 
@@ -39,7 +40,7 @@ Latest governance dry-run checks:
 ## Known Limits
 
 - No real MetaMask wallet transaction.
-- No network check or network switch has been implemented.
+- No network switch has been implemented.
 - No wallet address is persisted; the connected address is held only in client state for display.
 - No Mantle Sepolia contract deployment.
 - No explorer verification.
@@ -54,7 +55,7 @@ Read these first:
 2. `specs/status.json`
 3. `specs/task-board.md`
 4. `docs/agent-loop.md`
-5. `specs/003-mantle-network-check.md` once it exists
+5. `specs/004-mantle-network-switch.md` once it exists
 6. `docs/architecture.md`
 
 Then run:
@@ -63,6 +64,6 @@ Then run:
 corepack pnpm progress
 ```
 
-Do not start `003-mantle-network-check` until governance scripts pass and `002-wallet-connect` has been merged back into `feature/project-scaffold`.
+Do not start `004-mantle-network-switch` until governance scripts pass and `003-mantle-network-check` has been merged back into `feature/project-scaffold`.
 
-For `003-mantle-network-check`, keep the current boundary: checking network status only. Do not request network switching, transactions, contract calls, private keys, seed phrases, wallet passwords, or API keys.
+For `004-mantle-network-switch`, remember that `003-mantle-network-check` only checked network status. Any network switching must stay in the 004 branch and still avoid transactions, contract calls, private keys, seed phrases, wallet passwords, or API keys.
