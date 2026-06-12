@@ -8,7 +8,7 @@ This ledger tracks end-to-end readiness for the DoraHacks submission.
 | SACP Core | scaffolded | `docs/evidence/000-scaffold.md` | 2026-06-10 |
 | Wallet Detection | verified | `docs/evidence/001-wallet-detection.md` | 2026-06-11 |
 | Wallet Connect | verified | `docs/evidence/002-wallet-connect.md` | 2026-06-11 |
-| Mantle Network Check | planned | - | - |
+| Mantle Network Check | verified | `docs/evidence/003-mantle-network-check.md` | 2026-06-12 |
 | Mantle Network Switch | planned | - | - |
 | Contract Deploy | planned | - | - |
 | Anchor Transaction | planned | - | - |
