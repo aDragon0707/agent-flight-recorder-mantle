@@ -51,7 +51,7 @@
       "lastVerified": "2026-06-12"
     },
     "007-explorer-verification": {
-      "status": "planned",
+      "status": "in_progress",
       "branch": "feature/007-explorer-verification",
       "commit": "",
       "evidence": "",
