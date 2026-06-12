@@ -12,7 +12,7 @@ This ledger tracks end-to-end readiness for the DoraHacks submission.
 | Mantle Network Switch | verified | `docs/evidence/004-mantle-network-switch.md` | 2026-06-12 |
 | Contract Deploy | verified | `docs/evidence/005-contract-deploy.md` | 2026-06-12 |
 | Anchor Transaction | verified | `docs/evidence/006-anchor-transaction.md` | 2026-06-12 |
-| Explorer Verification | planned | - | - |
+| Explorer Verification | verified | `docs/evidence/007-explorer-verification.md` | 2026-06-12 |
 | Public Demo Deploy | planned | - | - |
 | Demo Video | planned | - | - |
 | DoraHacks Submission | planned | - | - |
@@ -21,7 +21,7 @@ This ledger tracks end-to-end readiness for the DoraHacks submission.
 
 - [ ] Public demo URL is available.
 - [x] Mantle Sepolia contract address is deployed.
-- [ ] Mantle Explorer link is available.
+- [x] Mantle Explorer link is available.
 - [ ] README includes setup, architecture, demo flow, contract address, demo URL, and explorer link.
 - [ ] Demo video is at least 2 minutes.
 - [ ] DoraHacks BUIDL page is updated.
