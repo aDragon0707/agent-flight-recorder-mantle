@@ -3,9 +3,9 @@
 ## Current State
 
 - Repository: `aDragon0707/agent-flight-recorder-mantle`
-- Current branch: `feature/005-contract-deploy`
+- Current branch: `feature/006-anchor-transaction`
 - Current verified spec: `005-contract-deploy`
-- Current spec: `006-anchor-transaction`
+- Current spec: `006-anchor-transaction` (implemented, awaiting human wallet transaction)
 - Next spec: `007-explorer-verification`
 
 ## Completed
@@ -22,6 +22,7 @@
 - Mantle network check: after wallet connection, web UI checks the current wallet chain only when the user clicks `Check network`, calls only `eth_chainId`, accepts `0x138b` case-insensitively, displays the current chain id, and reports wrong network without switching.
 - Mantle network switch: when the wallet is connected and network check reports `wrong_network`, web UI shows `Switch to Mantle Sepolia` and calls only `wallet_switchEthereumChain` with chain id `0x138b`; it reports rejected / not added / failed states and never auto-adds the network.
 - Contract deploy (005B): `ReceiptAnchor` deployed once to Mantle Sepolia (chainId 5003) at `0x69E07961d8c022B81c1c968ef7C1a3955E8D182b` (deploy tx `0x3b7be838fe7384cb37d5ea8dfb49c6ea2788c7766158999834473625fce6568f`). Verified; evidence in `docs/evidence/005-contract-deploy.md`.
+- Anchor transaction (006A, code only): web UI adds an `Anchor receipt` action in the `Mantle Anchor` panel. `apps/web/lib/anchor-receipt.ts` builds the `anchorReceipt(receiptHash, statusCode, agentIdHash, taskIdHash)` calldata with viem (`encodeFunctionData`, `keccak256`, `toBytes`) and sends it via the injected provider `eth_sendTransaction`. `agentIdHash = keccak256(toBytes(agentId))`, `taskIdHash = keccak256(toBytes(taskId))`; contract address constant `receiptAnchorAddress` lives in `apps/web/lib/chains.ts`. Button enables only when receipt + receiptHash exist, wallet is connected, and network is `mantle_sepolia`. UI states: idle / anchoring / anchored (shows tx hash + Mantlescan link) / rejected (4001) / failed. Status is `implemented`, not `verified`: no real Mantle Sepolia transaction was sent and no real tx hash exists.
 
 ## Last Verified Commands
 
@@ -45,7 +46,7 @@ Latest governance dry-run checks:
 
 ## Known Limits
 
-- No real MetaMask wallet transaction.
+- No real MetaMask wallet transaction. 006A implements the anchor send path in code only; the `Anchor receipt` button has not been exercised against a real wallet, so no real Mantle Sepolia tx hash exists.
 - Real wallet network switching was not manually exercised in MetaMask during automated verification.
 - No wallet address is persisted; the connected address is held only in client state for display.
 - No explorer verification.

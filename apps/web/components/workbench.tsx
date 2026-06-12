@@ -9,6 +9,12 @@ import {
 } from "@afr/sacp-core";
 import { useEffect, useMemo, useState } from "react";
 import {
+  anchorReceiptWithInjectedProvider,
+  type AnchorReceiptStatus,
+  type EthereumSendTransactionProvider
+} from "@/lib/anchor-receipt";
+import { mantleSepolia } from "@/lib/chains";
+import {
   checkMantleSepoliaNetwork,
   type EthereumChainProvider,
   type MantleNetworkStatus
@@ -38,6 +44,11 @@ type MantleNetworkSwitchViewState = {
   status: MantleNetworkSwitchStatus;
 };
 
+type AnchorReceiptViewState = {
+  status: AnchorReceiptStatus;
+  txHash: string | null;
+};
+
 function isEthereumRequestProvider(provider: unknown): provider is EthereumRequestProvider {
   return (
     typeof provider === "object" &&
@@ -65,6 +76,17 @@ function isEthereumNetworkSwitchProvider(provider: unknown): provider is Ethereu
   );
 }
 
+function isEthereumSendTransactionProvider(
+  provider: unknown
+): provider is EthereumSendTransactionProvider {
+  return (
+    typeof provider === "object" &&
+    provider !== null &&
+    "request" in provider &&
+    typeof (provider as { request?: unknown }).request === "function"
+  );
+}
+
 export function Workbench() {
   const [sampleId, setSampleId] = useState(demoSamples[0].id);
   const sample = demoSamples.find((item) => item.id === sampleId) ?? demoSamples[0];
@@ -83,6 +105,10 @@ export function Workbench() {
     useState<MantleNetworkSwitchViewState>({
       status: "idle"
     });
+  const [anchorState, setAnchorState] = useState<AnchorReceiptViewState>({
+    status: "idle",
+    txHash: null
+  });
 
   const result = useMemo(() => {
     try {
@@ -125,6 +151,7 @@ export function Workbench() {
     setWalletConnection(await connectInjectedWallet(host.ethereum));
     setMantleNetwork({ status: "unchecked", chainId: null });
     setMantleNetworkSwitch({ status: "idle" });
+    setAnchorState({ status: "idle", txHash: null });
   }
 
   async function checkNetwork() {
@@ -156,6 +183,38 @@ export function Workbench() {
       setMantleNetwork({ status: "checking", chainId: null });
       setMantleNetwork(await checkMantleSepoliaNetwork(host.ethereum));
     }
+  }
+
+  async function anchorReceipt() {
+    const host = window as unknown as { ethereum?: unknown };
+
+    if (
+      !result.receipt ||
+      !result.receiptHash ||
+      walletConnection.status !== "connected" ||
+      mantleNetwork.status !== "mantle_sepolia"
+    ) {
+      return;
+    }
+
+    if (!isEthereumSendTransactionProvider(host.ethereum)) {
+      setAnchorState({ status: "failed", txHash: null });
+      return;
+    }
+
+    setAnchorState({ status: "anchoring", txHash: null });
+    const anchorResult = await anchorReceiptWithInjectedProvider(host.ethereum, {
+      from: walletConnection.address,
+      receiptHash: result.receiptHash,
+      statusCode: result.receipt.statusCode,
+      agentId: result.receipt.agentId,
+      taskId: result.receipt.taskId
+    });
+
+    setAnchorState({
+      status: anchorResult.status,
+      txHash: anchorResult.status === "anchored" ? anchorResult.txHash : null
+    });
   }
 
   const switchDisabled =
@@ -190,6 +249,31 @@ export function Workbench() {
                       : mantleNetwork.status === "wrong_network"
                         ? "Ready to request Mantle Sepolia."
                         : "Check network before switching.";
+
+  const anchorDisabled =
+    !result.receiptHash ||
+    !result.receipt ||
+    walletConnection.status !== "connected" ||
+    mantleNetwork.status !== "mantle_sepolia" ||
+    anchorState.status === "anchoring";
+  const anchorButtonLabel =
+    anchorState.status === "anchoring" ? "Anchoring..." : "Anchor receipt";
+  const anchorStatusLabel =
+    anchorState.status === "anchored"
+      ? "Receipt anchored on Mantle Sepolia."
+      : anchorState.status === "anchoring"
+        ? "Anchoring... confirm the transaction in your wallet."
+        : anchorState.status === "rejected"
+          ? "Anchor transaction rejected."
+          : anchorState.status === "failed"
+            ? "Anchor transaction failed."
+            : !result.receiptHash || !result.receipt
+              ? "Generate a receipt before anchoring."
+              : walletConnection.status !== "connected"
+                ? "Connect wallet before anchoring."
+                : mantleNetwork.status !== "mantle_sepolia"
+                  ? "Switch to Mantle Sepolia before anchoring."
+                  : "Ready to anchor the receipt hash.";
 
   useEffect(() => {
     const host = window as unknown as { ethereum?: unknown };
@@ -375,6 +459,43 @@ export function Workbench() {
                   {switchButtonLabel}
                 </button>
               </div>
+            </div>
+            <div className="rounded border border-line bg-[#fbfbf8] p-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p className="font-medium">Anchor receipt</p>
+                  <p className="mt-1 text-xs text-ink/60">{anchorStatusLabel}</p>
+                </div>
+                <button
+                  className="rounded border border-signal bg-signal px-3 py-2 text-xs font-semibold text-white disabled:cursor-not-allowed disabled:border-line disabled:bg-ink/10 disabled:text-ink/40"
+                  disabled={anchorDisabled}
+                  type="button"
+                  onClick={anchorReceipt}
+                >
+                  {anchorButtonLabel}
+                </button>
+              </div>
+              {anchorState.status === "anchored" && anchorState.txHash ? (
+                <dl className="mt-3 grid gap-2 border-t border-line pt-3 text-xs">
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-ink/50">Transaction hash</dt>
+                    <dd className="break-all text-right">{anchorState.txHash}</dd>
+                  </div>
+                  <div className="flex justify-between gap-3">
+                    <dt className="text-ink/50">Explorer</dt>
+                    <dd>
+                      <a
+                        className="break-all text-right text-signal underline"
+                        href={`${mantleSepolia.explorerUrl}/tx/${anchorState.txHash}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View on Mantlescan
+                      </a>
+                    </dd>
+                  </div>
+                </dl>
+              ) : null}
             </div>
           </div>
         </section>
