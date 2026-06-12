@@ -1,5 +1,5 @@
 {
-  "currentSpec": "007-explorer-verification",
+  "currentSpec": "008-public-demo-deploy",
   "items": {
     "000-scaffold": {
       "status": "verified",
@@ -51,11 +51,11 @@
       "lastVerified": "2026-06-12"
     },
     "007-explorer-verification": {
-      "status": "planned",
+      "status": "verified",
       "branch": "feature/007-explorer-verification",
-      "commit": "",
-      "evidence": "",
-      "lastVerified": ""
+      "commit": "5baa5c1",
+      "evidence": "docs/evidence/007-explorer-verification.md",
+      "lastVerified": "2026-06-12"
     },
     "008-public-demo-deploy": {
       "status": "planned",

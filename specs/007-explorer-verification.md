@@ -1,6 +1,6 @@
 # Spec 007: Explorer Verification
 
-Status: planned
+Status: verified
 
 ## Goal
 
