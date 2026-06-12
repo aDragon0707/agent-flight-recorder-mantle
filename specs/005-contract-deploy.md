@@ -1,6 +1,6 @@
 # Spec 005: Contract Deploy
 
-Status: planned
+Status: verified
 
 ## Goal
 

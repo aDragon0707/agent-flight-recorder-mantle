@@ -10,7 +10,7 @@ This ledger tracks end-to-end readiness for the DoraHacks submission.
 | Wallet Connect | verified | `docs/evidence/002-wallet-connect.md` | 2026-06-11 |
 | Mantle Network Check | verified | `docs/evidence/003-mantle-network-check.md` | 2026-06-12 |
 | Mantle Network Switch | verified | `docs/evidence/004-mantle-network-switch.md` | 2026-06-12 |
-| Contract Deploy | planned | - | - |
+| Contract Deploy | verified | `docs/evidence/005-contract-deploy.md` | 2026-06-12 |
 | Anchor Transaction | planned | - | - |
 | Explorer Verification | planned | - | - |
 | Public Demo Deploy | planned | - | - |
@@ -20,7 +20,7 @@ This ledger tracks end-to-end readiness for the DoraHacks submission.
 ## Final Acceptance Requirements
 
 - [ ] Public demo URL is available.
-- [ ] Mantle Sepolia contract address is deployed.
+- [x] Mantle Sepolia contract address is deployed.
 - [ ] Mantle Explorer link is available.
 - [ ] README includes setup, architecture, demo flow, contract address, demo URL, and explorer link.
 - [ ] Demo video is at least 2 minutes.
