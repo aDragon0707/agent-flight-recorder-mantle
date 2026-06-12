@@ -14,6 +14,11 @@ import {
   type MantleNetworkStatus
 } from "@/lib/mantle-network";
 import {
+  switchToMantleSepoliaNetwork,
+  type EthereumNetworkSwitchProvider,
+  type MantleNetworkSwitchStatus
+} from "@/lib/mantle-network-switch";
+import {
   connectInjectedWallet,
   type EthereumRequestProvider,
   type WalletConnectionResult
@@ -29,6 +34,10 @@ type MantleNetworkViewState = {
   chainId: string | null;
 };
 
+type MantleNetworkSwitchViewState = {
+  status: MantleNetworkSwitchStatus;
+};
+
 function isEthereumRequestProvider(provider: unknown): provider is EthereumRequestProvider {
   return (
     typeof provider === "object" &&
@@ -39,6 +48,15 @@ function isEthereumRequestProvider(provider: unknown): provider is EthereumReque
 }
 
 function isEthereumChainProvider(provider: unknown): provider is EthereumChainProvider {
+  return (
+    typeof provider === "object" &&
+    provider !== null &&
+    "request" in provider &&
+    typeof (provider as { request?: unknown }).request === "function"
+  );
+}
+
+function isEthereumNetworkSwitchProvider(provider: unknown): provider is EthereumNetworkSwitchProvider {
   return (
     typeof provider === "object" &&
     provider !== null &&
@@ -61,6 +79,10 @@ export function Workbench() {
     status: "unchecked",
     chainId: null
   });
+  const [mantleNetworkSwitch, setMantleNetworkSwitch] =
+    useState<MantleNetworkSwitchViewState>({
+      status: "idle"
+    });
 
   const result = useMemo(() => {
     try {
@@ -102,10 +124,12 @@ export function Workbench() {
     setWalletConnection({ status: "connecting" });
     setWalletConnection(await connectInjectedWallet(host.ethereum));
     setMantleNetwork({ status: "unchecked", chainId: null });
+    setMantleNetworkSwitch({ status: "idle" });
   }
 
   async function checkNetwork() {
     const host = window as unknown as { ethereum?: unknown };
+    setMantleNetworkSwitch({ status: "idle" });
 
     if (!isEthereumChainProvider(host.ethereum)) {
       setMantleNetwork({ status: "not_available", chainId: null });
@@ -115,6 +139,57 @@ export function Workbench() {
     setMantleNetwork({ status: "checking", chainId: null });
     setMantleNetwork(await checkMantleSepoliaNetwork(host.ethereum));
   }
+
+  async function switchNetwork() {
+    const host = window as unknown as { ethereum?: unknown };
+
+    if (!isEthereumNetworkSwitchProvider(host.ethereum)) {
+      setMantleNetworkSwitch({ status: "not_available" });
+      return;
+    }
+
+    setMantleNetworkSwitch({ status: "switching" });
+    const switchResult = await switchToMantleSepoliaNetwork(host.ethereum);
+    setMantleNetworkSwitch(switchResult);
+
+    if (switchResult.status === "switched" && isEthereumChainProvider(host.ethereum)) {
+      setMantleNetwork({ status: "checking", chainId: null });
+      setMantleNetwork(await checkMantleSepoliaNetwork(host.ethereum));
+    }
+  }
+
+  const switchDisabled =
+    walletConnection.status !== "connected" ||
+    mantleNetwork.status !== "wrong_network" ||
+    mantleNetworkSwitch.status === "switching";
+  const switchButtonLabel =
+    mantleNetworkSwitch.status === "switching"
+      ? "Switching..."
+      : mantleNetwork.status === "mantle_sepolia"
+        ? "Already on Mantle Sepolia"
+        : "Switch to Mantle Sepolia";
+  const switchStatusLabel =
+    walletConnection.status !== "connected"
+      ? "Connect wallet before switching networks."
+      : mantleNetwork.status === "unchecked"
+        ? "Check network before switching."
+        : mantleNetwork.status === "mantle_sepolia"
+          ? "Already on Mantle Sepolia."
+          : mantleNetworkSwitch.status === "switching"
+            ? "Switching..."
+            : mantleNetworkSwitch.status === "switched"
+              ? "Network switch request succeeded. Current network was refreshed."
+              : mantleNetworkSwitch.status === "rejected"
+                ? "Network switch rejected."
+                : mantleNetworkSwitch.status === "not_added"
+                  ? "Mantle Sepolia is not added in this wallet."
+                  : mantleNetworkSwitch.status === "not_available"
+                    ? "Injected wallet provider is not available."
+                    : mantleNetworkSwitch.status === "failed"
+                      ? "Network switch failed."
+                      : mantleNetwork.status === "wrong_network"
+                        ? "Ready to request Mantle Sepolia."
+                        : "Check network before switching.";
 
   useEffect(() => {
     const host = window as unknown as { ethereum?: unknown };
@@ -289,6 +364,17 @@ export function Workbench() {
                   <dd>{mantleNetwork.chainId ?? "Not checked"}</dd>
                 </div>
               </dl>
+              <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-3">
+                <p className="text-xs text-ink/60">{switchStatusLabel}</p>
+                <button
+                  className="rounded border border-signal bg-signal px-3 py-2 text-xs font-semibold text-white disabled:cursor-not-allowed disabled:border-line disabled:bg-ink/10 disabled:text-ink/40"
+                  disabled={switchDisabled}
+                  type="button"
+                  onClick={switchNetwork}
+                >
+                  {switchButtonLabel}
+                </button>
+              </div>
             </div>
           </div>
         </section>
