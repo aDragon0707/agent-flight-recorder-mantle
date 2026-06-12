@@ -6,7 +6,9 @@
     "build": "hardhat compile",
     "test": "hardhat test",
     "lint": "hardhat compile",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "deploy:mantleSepolia": "hardhat run scripts/deploy.ts --network mantleSepolia",
+    "verify:mantleSepolia": "hardhat verify --network mantleSepolia"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

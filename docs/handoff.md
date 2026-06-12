@@ -3,9 +3,10 @@
 ## Current State
 
 - Repository: `aDragon0707/agent-flight-recorder-mantle`
-- Current branch: `feature/004-mantle-network-switch`
-- Current verified spec: `004-mantle-network-switch`
-- Next spec: `005-contract-deploy`
+- Current branch: `feature/005-contract-deploy`
+- Current verified spec: `005-contract-deploy`
+- Current spec: `006-anchor-transaction`
+- Next spec: `007-explorer-verification`
 
 ## Completed
 
@@ -20,6 +21,7 @@
 - Wallet connect: web UI requests `eth_requestAccounts` only after the user clicks `Connect wallet`, then displays connected / rejected / failed states without persistence.
 - Mantle network check: after wallet connection, web UI checks the current wallet chain only when the user clicks `Check network`, calls only `eth_chainId`, accepts `0x138b` case-insensitively, displays the current chain id, and reports wrong network without switching.
 - Mantle network switch: when the wallet is connected and network check reports `wrong_network`, web UI shows `Switch to Mantle Sepolia` and calls only `wallet_switchEthereumChain` with chain id `0x138b`; it reports rejected / not added / failed states and never auto-adds the network.
+- Contract deploy (005B): `ReceiptAnchor` deployed once to Mantle Sepolia (chainId 5003) at `0x69E07961d8c022B81c1c968ef7C1a3955E8D182b` (deploy tx `0x3b7be838fe7384cb37d5ea8dfb49c6ea2788c7766158999834473625fce6568f`). Verified; evidence in `docs/evidence/005-contract-deploy.md`.
 
 ## Last Verified Commands
 
@@ -39,13 +41,13 @@ Latest governance dry-run checks:
 - `002-wallet-connect` verified with evidence in `docs/evidence/002-wallet-connect.md`.
 - `003-mantle-network-check` verified with evidence in `docs/evidence/003-mantle-network-check.md`.
 - `004-mantle-network-switch` verified with evidence in `docs/evidence/004-mantle-network-switch.md`.
+- `005-contract-deploy` verified with evidence in `docs/evidence/005-contract-deploy.md`.
 
 ## Known Limits
 
 - No real MetaMask wallet transaction.
 - Real wallet network switching was not manually exercised in MetaMask during automated verification.
 - No wallet address is persisted; the connected address is held only in client state for display.
-- No Mantle Sepolia contract deployment.
 - No explorer verification.
 - No public frontend deployment.
 - No demo video.

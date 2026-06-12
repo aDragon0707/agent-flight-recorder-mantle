@@ -53,8 +53,9 @@ The verifiable diagnosis result hash is written on-chain.
 - [x] Verified wallet connect spec: `002-wallet-connect`。`apps/web` 只在用户点击 `Connect wallet` 后调用 `eth_requestAccounts`，并显示 connected / rejected / failed 状态；不检查网络、不切网络、不发交易、不持久化地址。
 - [x] Verified Mantle network check spec: `003-mantle-network-check`。`apps/web` 只在钱包 connected 后由用户点击 `Check network` 调用 `eth_chainId`，大小写不敏感判断 `0x138b` / Mantle Sepolia，并显示当前 chain id；不切网络、不发交易、不调用合约、不持久化、不注册钱包事件监听。
 - [x] Verified Mantle network switch spec: `004-mantle-network-switch`。`apps/web` 只在钱包 connected 且网络检查为 `wrong_network` 后显示 `Switch to Mantle Sepolia`，用户点击后调用 `wallet_switchEthereumChain` 和 `0x138b`；`4001` 显示 rejected，`4902` 显示 not added，不自动添加网络，不发交易、不调用合约、不部署。
+- [x] Verified contract deploy spec: `005-contract-deploy`。`ReceiptAnchor` 已部署到 Mantle Sepolia（chainId 5003），地址 `0x69E07961d8c022B81c1c968ef7C1a3955E8D182b`，deploy tx `0x3b7be838fe7384cb37d5ea8dfb49c6ea2788c7766158999834473625fce6568f`；单次真实部署，未调用 `anchorReceipt`、未发前端交易、未做公开 demo 部署。
 - [ ] `apps/web` 尚未接真实 MetaMask transaction。
-- [ ] `ReceiptAnchor` 尚未部署到 Mantle Sepolia。
+- [x] `ReceiptAnchor` 已部署到 Mantle Sepolia（`005-contract-deploy`）。
 - [ ] README 尚未包含 deployed contract address、demo URL、explorer link。
 - [ ] DoraHacks submission materials 尚未完成。
 

@@ -1,5 +1,5 @@
 {
-  "currentSpec": "005-contract-deploy",
+  "currentSpec": "006-anchor-transaction",
   "items": {
     "000-scaffold": {
       "status": "verified",
@@ -37,11 +37,11 @@
       "lastVerified": "2026-06-12"
     },
     "005-contract-deploy": {
-      "status": "planned",
+      "status": "verified",
       "branch": "feature/005-contract-deploy",
-      "commit": "",
-      "evidence": "",
-      "lastVerified": ""
+      "commit": "dfa5bef",
+      "evidence": "docs/evidence/005-contract-deploy.md",
+      "lastVerified": "2026-06-12"
     },
     "006-anchor-transaction": {
       "status": "planned",
