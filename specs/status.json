@@ -1,5 +1,5 @@
 {
-  "currentSpec": "006-anchor-transaction",
+  "currentSpec": "007-explorer-verification",
   "items": {
     "000-scaffold": {
       "status": "verified",
@@ -44,11 +44,11 @@
       "lastVerified": "2026-06-12"
     },
     "006-anchor-transaction": {
-      "status": "planned",
+      "status": "verified",
       "branch": "feature/006-anchor-transaction",
-      "commit": "",
-      "evidence": "",
-      "lastVerified": ""
+      "commit": "db0aa4a",
+      "evidence": "docs/evidence/006-anchor-transaction.md",
+      "lastVerified": "2026-06-12"
     },
     "007-explorer-verification": {
       "status": "planned",

@@ -54,7 +54,8 @@ The verifiable diagnosis result hash is written on-chain.
 - [x] Verified Mantle network check spec: `003-mantle-network-check`。`apps/web` 只在钱包 connected 后由用户点击 `Check network` 调用 `eth_chainId`，大小写不敏感判断 `0x138b` / Mantle Sepolia，并显示当前 chain id；不切网络、不发交易、不调用合约、不持久化、不注册钱包事件监听。
 - [x] Verified Mantle network switch spec: `004-mantle-network-switch`。`apps/web` 只在钱包 connected 且网络检查为 `wrong_network` 后显示 `Switch to Mantle Sepolia`，用户点击后调用 `wallet_switchEthereumChain` 和 `0x138b`；`4001` 显示 rejected，`4902` 显示 not added，不自动添加网络，不发交易、不调用合约、不部署。
 - [x] Verified contract deploy spec: `005-contract-deploy`。`ReceiptAnchor` 已部署到 Mantle Sepolia（chainId 5003），地址 `0x69E07961d8c022B81c1c968ef7C1a3955E8D182b`，deploy tx `0x3b7be838fe7384cb37d5ea8dfb49c6ea2788c7766158999834473625fce6568f`；单次真实部署，未调用 `anchorReceipt`、未发前端交易、未做公开 demo 部署。
-- [ ] `apps/web` 尚未接真实 MetaMask transaction。
+- [x] Verified anchor transaction spec: `006-anchor-transaction`。`apps/web` 在 `Mantle Anchor` 面板新增 `Anchor receipt` 按钮，仅当 receipt 与 receiptHash 存在、钱包 connected、网络为 `mantle_sepolia` 时启用；点击后由 `apps/web/lib/anchor-receipt.ts` 用 viem 编码 `anchorReceipt(receiptHash, statusCode, agentIdHash, taskIdHash)` 并经注入式 provider `eth_sendTransaction` 发送，`agentIdHash`/`taskIdHash` 为 `keccak256(toBytes(agentId|taskId))`，合约地址常量在 `apps/web/lib/chains.ts`。真实 Mantle Sepolia 交易 `0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb` 已成功写入 `ReceiptAnchor` 并触发 `ReceiptAnchored` event；完整 explorer UI 验证留给 `007-explorer-verification`。
+- [x] `apps/web` 已接真实 MetaMask transaction（`006-anchor-transaction`）。
 - [x] `ReceiptAnchor` 已部署到 Mantle Sepolia（`005-contract-deploy`）。
 - [ ] README 尚未包含 deployed contract address、demo URL、explorer link。
 - [ ] DoraHacks submission materials 尚未完成。
