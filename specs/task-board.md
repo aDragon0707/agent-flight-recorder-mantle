@@ -8,7 +8,7 @@
 | 003-mantle-network-check | Mantle Sepolia 网络检查 | 钱包 | 已验证 | `feature/003-mantle-network-check` | `docs/evidence/003-mantle-network-check.md` | status、task-board、evidence、handoff、architecture、project-acceptance |
 | 004-mantle-network-switch | Mantle Sepolia 网络切换 | 钱包 | 已验证 | `feature/004-mantle-network-switch` | `docs/evidence/004-mantle-network-switch.md` | status、task-board、evidence、handoff、architecture、project-acceptance |
 | 005-contract-deploy | ReceiptAnchor 合约部署 | 合约 | 已验证 | `feature/005-contract-deploy` | `docs/evidence/005-contract-deploy.md` | status、task-board、environments、onchain-verification、evidence、handoff、architecture、project-acceptance |
-| 006-anchor-transaction | 上链锚定交易 | 上链 | 计划中 | `feature/006-anchor-transaction` | - | - |
+| 006-anchor-transaction | 上链锚定交易 | 上链 | 进行中 | `feature/006-anchor-transaction` | - | - |
 | 007-explorer-verification | 浏览器验证 | 上链 | 计划中 | `feature/007-explorer-verification` | - | - |
 | 008-public-demo-deploy | 公开 demo 部署 | 提交 | 计划中 | `feature/008-public-demo-deploy` | - | - |
 | 009-submission-package | DoraHacks 提交材料 | 提交 | 计划中 | `feature/009-submission-package` | - | - |

@@ -44,7 +44,7 @@
       "lastVerified": "2026-06-12"
     },
     "006-anchor-transaction": {
-      "status": "planned",
+      "status": "in_progress",
       "branch": "feature/006-anchor-transaction",
       "commit": "",
       "evidence": "",
