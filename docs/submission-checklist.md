@@ -38,6 +38,8 @@ AI agents are increasingly used for coding, deployment, wallet workflows, and ta
 | --- | --- |
 | Live demo | `https://agent-flight-recorder-mantle.vercel.app` |
 | GitHub repo | `https://github.com/aDragon0707/agent-flight-recorder-mantle` |
+| DoraHacks BUIDL | `https://dorahacks.io/buidl/43870` |
+| Demo video | `https://youtu.be/SfBEMzkSDUM` |
 | Contract | `https://sepolia.mantlescan.xyz/address/0x69E07961d8c022B81c1c968ef7C1a3955E8D182b` |
 | Anchor transaction | `https://sepolia.mantlescan.xyz/tx/0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb` |
 
@@ -59,13 +61,21 @@ Agent output -> SACP diagnosis -> receipt -> receipt hash -> Mantle anchor -> ex
 
 ## Final Human Checks Before Publishing
 
-- [ ] Demo video URL exists.
-- [ ] DoraHacks page includes live demo URL.
-- [ ] DoraHacks page includes public GitHub repo.
-- [ ] DoraHacks page includes contract address.
-- [ ] DoraHacks page includes anchor transaction or explorer proof.
-- [ ] Description does not claim ERC-8004, mainnet, autonomous LLM execution, or finished video unless those exist.
-- [ ] Human confirms final publish / submit action.
+- [x] Demo video URL exists.
+- [x] DoraHacks page includes live demo URL.
+- [x] DoraHacks page includes public GitHub repo.
+- [x] DoraHacks page includes contract address.
+- [x] DoraHacks page includes anchor transaction or explorer proof.
+- [x] Description does not claim ERC-8004, mainnet, autonomous LLM execution, or finished video unless those exist.
+- [x] Human confirms final publish / submit action.
+
+## Submission Status
+
+```text
+DoraHacks BUIDL: https://dorahacks.io/buidl/43870
+Track: AI DevTools
+Review state: This submission is under review.
+```
 
 ## Known Limits To Be Honest About
 

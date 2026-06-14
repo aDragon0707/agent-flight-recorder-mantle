@@ -65,11 +65,11 @@
       "lastVerified": "2026-06-14"
     },
     "009-submission-package": {
-      "status": "in_progress",
+      "status": "verified",
       "branch": "feature/009-submission-package",
-      "commit": "",
-      "evidence": "",
-      "lastVerified": ""
+      "commit": "109d855",
+      "evidence": "docs/evidence/009-submission-package.md",
+      "lastVerified": "2026-06-14"
     }
   }
 }

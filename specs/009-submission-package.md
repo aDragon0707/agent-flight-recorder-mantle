@@ -1,6 +1,6 @@
 # Spec 009: Submission Package
 
-Status: in_progress
+Status: verified
 
 ## Goal
 
@@ -25,6 +25,15 @@ Prepare the final DoraHacks submission package so judges can review the reposito
 corepack pnpm progress
 corepack pnpm verify:all
 ```
+
+## Verified Submission Links
+
+- DoraHacks BUIDL: `https://dorahacks.io/buidl/43870`
+- Demo video: `https://youtu.be/SfBEMzkSDUM`
+- Live demo: `https://agent-flight-recorder-mantle.vercel.app`
+- GitHub repo: `https://github.com/aDragon0707/agent-flight-recorder-mantle`
+- ReceiptAnchor contract: `https://sepolia.mantlescan.xyz/address/0x69E07961d8c022B81c1c968ef7C1a3955E8D182b`
+- Anchor transaction: `https://sepolia.mantlescan.xyz/tx/0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb`
 
 ## Stop Conditions
 

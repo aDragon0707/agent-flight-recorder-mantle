@@ -25,8 +25,8 @@
 - [x] Mantle Sepolia 合约部署。
 - [x] Mantle Explorer / public RPC verification。
 - [x] public frontend demo deployment。
-- [ ] demo video。
-- [ ] DoraHacks BUIDL 页面更新。
+- [x] demo video。
+- [x] DoraHacks BUIDL 页面更新并提交审核。
 
 Current verified delivery update (2026-06-14):
 
@@ -35,8 +35,8 @@ Current verified delivery update (2026-06-14):
 - [x] Mantle Explorer / public RPC verification.
 - [x] Public frontend demo deployment: `https://agent-flight-recorder-mantle.vercel.app`.
 - [x] GitHub repository is public: `https://github.com/aDragon0707/agent-flight-recorder-mantle`.
-- [ ] Demo video.
-- [ ] DoraHacks BUIDL page update.
+- [x] Demo video: `https://youtu.be/SfBEMzkSDUM`.
+- [x] DoraHacks BUIDL page update: `https://dorahacks.io/buidl/43870`.
 
 一句话定位：
 

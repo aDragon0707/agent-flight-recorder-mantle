@@ -25,8 +25,11 @@ No receipt, no trust.
 | --- | --- |
 | Live demo | https://agent-flight-recorder-mantle.vercel.app |
 | GitHub repo | https://github.com/aDragon0707/agent-flight-recorder-mantle |
+| DoraHacks BUIDL | https://dorahacks.io/buidl/43870 |
+| Demo video | https://youtu.be/SfBEMzkSDUM |
 | ReceiptAnchor contract | https://sepolia.mantlescan.xyz/address/0x69E07961d8c022B81c1c968ef7C1a3955E8D182b |
 | Sample anchor transaction | https://sepolia.mantlescan.xyz/tx/0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb |
+| Submission evidence | docs/evidence/009-submission-package.md |
 | Public demo evidence | docs/evidence/008-public-demo-deploy.md |
 | Explorer verification evidence | docs/evidence/007-explorer-verification.md |
 
@@ -116,12 +119,8 @@ Wallet credentials: never in repo, never in frontend
 - Real wallet-based anchor transaction.
 - Mantle Explorer / public RPC verification.
 - Public Vercel demo deployment.
-- Evidence ledgers for specs `000-008`.
-
-Not yet complete:
-
-- Demo video.
-- DoraHacks final BUIDL page submission.
+- Demo video and DoraHacks BUIDL submission package.
+- Evidence ledgers for specs `000-009`.
 
 The earlier scaffold stage remains recorded in the evidence history for audit continuity; the project is now a public demo MVP.
 

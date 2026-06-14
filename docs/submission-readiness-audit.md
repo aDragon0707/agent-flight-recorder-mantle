@@ -88,11 +88,11 @@ AI agents are increasingly trusted with coding, deployment, wallet workflows, an
 | Mantle integration | 7/10 | Real on-chain anchor, but Sepolia only and no ERC-8004 identity. |
 | AI DevTools fit | 8/10 | Strong if framed as Codex/Claude Code receipt layer. |
 | Demo polish | 6/10 | Functional, but less dramatic than competitors. |
-| Submission packaging | 5/10 before 009A, 8/10 after hardening | README and script are the biggest lever. |
+| Submission packaging | 9/10 after 009 closeout | README, video, DoraHacks BUIDL, demo URL, GitHub, contract, and explorer proof are all linked. |
 
 ## Next Actions
 
 - Keep the core product stable; do not add risky LLM API integration before submission.
 - Use the hardened README as the primary judge-facing surface.
-- Record a 2-3 minute video that shows the full receipt-to-Mantle proof path.
-- Submit only after the human confirms the final DoraHacks BUIDL page.
+- Monitor DoraHacks organizer review for status changes.
+- Avoid adding risky features after submission unless an organizer specifically requests a fix.

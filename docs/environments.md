@@ -55,3 +55,14 @@ Production URL: https://agent-flight-recorder-mantle.vercel.app
 Deployment URL: https://agent-flight-recorder-mantle-424p4snjl-adragon0707s-projects.vercel.app
 ```
 
+## Public Submission
+
+Status: submitted for organizer review (009)
+
+```text
+DoraHacks BUIDL: https://dorahacks.io/buidl/43870
+Demo video: https://youtu.be/SfBEMzkSDUM
+Track: AI DevTools
+Review state: This submission is under review.
+```
+

@@ -96,7 +96,7 @@ The verifiable diagnosis result hash is written on-chain.
 - [x] Verified public demo deploy spec: `008-public-demo-deploy`。`apps/web` 已通过 Vercel 公开部署，稳定 demo URL 为 `https://agent-flight-recorder-mantle.vercel.app`；Vercel 使用仓库根目录与 `vercel.json`，通过 `@vercel/next` 指向 `apps/web/package.json`，以支持 pnpm workspace 和 `packages/sacp-core`。公网 URL 已返回 HTTP 200，页面内容包含 `Agent Flight Recorder` 与 `Mantle`。
 - [x] `ReceiptAnchor` 已部署到 Mantle Sepolia（`005-contract-deploy`）。
 - [x] README 已包含 deployed contract address、demo URL、explorer link。
-- [ ] DoraHacks submission materials 尚未完成。
+- [x] Verified submission package spec: `009-submission-package`。DoraHacks BUIDL `https://dorahacks.io/buidl/43870` is public, demo video `https://youtu.be/SfBEMzkSDUM` is available, and the submission is recorded as under organizer review.
 
 ## 2. System Context
 

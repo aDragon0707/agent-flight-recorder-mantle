@@ -4,9 +4,9 @@
 
 - Repository: `aDragon0707/agent-flight-recorder-mantle`
 - Current branch: `feature/009-submission-package`
-- Current verified spec: `008-public-demo-deploy`
+- Current verified spec: `009-submission-package`
 - Current spec: `009-submission-package`
-- Next spec: `009-submission-package`
+- Next spec: none in `specs/spec-graph.json`
 
 ## Completed
 
@@ -25,7 +25,7 @@
 - Anchor transaction (006): web UI adds an `Anchor receipt` action in the `Mantle Anchor` panel. `apps/web/lib/anchor-receipt.ts` builds the `anchorReceipt(receiptHash, statusCode, agentIdHash, taskIdHash)` calldata with viem (`encodeFunctionData`, `keccak256`, `toBytes`) and sends it via the injected provider `eth_sendTransaction`. A real Mantle Sepolia transaction was confirmed by the human wallet: `0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb`. The transaction targeted the deployed `ReceiptAnchor` contract and emitted `ReceiptAnchored`; evidence is in `docs/evidence/006-anchor-transaction.md`.
 - Explorer verification (007): the 006 anchor transaction and its `ReceiptAnchored` event were independently verified via the public Mantle Sepolia RPC endpoint using `viem` from `@afr/web`. Receipt status `success`, `to` equals the deployed `ReceiptAnchor`, single `ReceiptAnchored` log, and all event fields match the 006 evidence. Canonical Mantlescan URL recorded. Read-only; no new transaction, no redeploy, no secret access. Evidence: `docs/evidence/007-explorer-verification.md`.
 - Public demo deploy (008): the `apps/web` Next.js workbench is publicly deployed on Vercel at `https://agent-flight-recorder-mantle.vercel.app`. The Vercel project uses the repository root with `vercel.json` pointing the Next builder at `apps/web/package.json`, so the pnpm workspace dependency on `packages/sacp-core` resolves correctly. SSO deployment protection was disabled for this project so judges can open the demo without logging in. Evidence: `docs/evidence/008-public-demo-deploy.md`.
-- Submission package (009A): README, PRD, architecture, demo script, submission checklist, and readiness audit are being hardened for judge review. This is packaging work only; it does not submit the DoraHacks page and does not mark 009 verified.
+- Submission package (009): the DoraHacks BUIDL page is public at `https://dorahacks.io/buidl/43870`, the demo video is public at `https://youtu.be/SfBEMzkSDUM`, and the manage-submission page showed `This submission is under review` with track `AI DevTools`. Evidence: `docs/evidence/009-submission-package.md`.
 
 ## Last Verified Commands
 
@@ -49,12 +49,13 @@ Latest governance dry-run checks:
 - `006-anchor-transaction` verified with evidence in `docs/evidence/006-anchor-transaction.md`.
 - `007-explorer-verification` verified with evidence in `docs/evidence/007-explorer-verification.md`.
 - `008-public-demo-deploy` verified with evidence in `docs/evidence/008-public-demo-deploy.md`.
+- `009-submission-package` verified with evidence in `docs/evidence/009-submission-package.md`.
 
 ## Known Limits
 
-- Public demo deploy (008) is complete; `009-submission-package` is next.
-- Demo script exists, but no recorded demo video URL exists yet.
-- DoraHacks submission package is not complete.
+- DoraHacks organizer review is pending; the submission page reports `This submission is under review`.
+- No next implementation spec is defined in `specs/spec-graph.json`.
+- Keep monitoring the BUIDL page and organizer messages; do not claim prize/approval before DoraHacks publishes it.
 
 ## Resume Instructions
 
@@ -73,4 +74,4 @@ Then run:
 corepack pnpm progress
 ```
 
-For `009-submission-package`, do not submit or publish the DoraHacks BUIDL page without human confirmation. Do not send another wallet transaction, do not redeploy, and do not read `contracts/.env`.
+For post-submission maintenance, do not send another wallet transaction, do not redeploy, and do not read `contracts/.env`. Do not change the DoraHacks submission unless the human operator explicitly asks for that specific update.
