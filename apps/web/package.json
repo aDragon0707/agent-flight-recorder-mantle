@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "corepack pnpm --filter @afr/sacp-core build",
     "build": "next build",
     "test": "vitest run",
     "lint": "tsc -p tsconfig.json --noEmit",
