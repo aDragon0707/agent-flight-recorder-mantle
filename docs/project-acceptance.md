@@ -13,16 +13,16 @@ This ledger tracks end-to-end readiness for the DoraHacks submission.
 | Contract Deploy | verified | `docs/evidence/005-contract-deploy.md` | 2026-06-12 |
 | Anchor Transaction | verified | `docs/evidence/006-anchor-transaction.md` | 2026-06-12 |
 | Explorer Verification | verified | `docs/evidence/007-explorer-verification.md` | 2026-06-12 |
-| Public Demo Deploy | planned | - | - |
+| Public Demo Deploy | verified | `docs/evidence/008-public-demo-deploy.md` | 2026-06-14 |
 | Demo Video | planned | - | - |
 | DoraHacks Submission | planned | - | - |
 
 ## Final Acceptance Requirements
 
-- [ ] Public demo URL is available.
+- [x] Public demo URL is available.
 - [x] Mantle Sepolia contract address is deployed.
 - [x] Mantle Explorer link is available.
-- [ ] README includes setup, architecture, demo flow, contract address, demo URL, and explorer link.
+- [x] README includes setup, architecture, demo flow, contract address, demo URL, and explorer link.
 - [ ] Demo video is at least 2 minutes.
 - [ ] DoraHacks BUIDL page is updated.
-- [ ] `corepack pnpm verify:all` passes.
+- [x] `corepack pnpm verify:all` passes.
