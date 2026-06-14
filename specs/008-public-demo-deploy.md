@@ -1,6 +1,6 @@
 # Spec 008: Public Demo Deploy
 
-Status: planned
+Status: in_progress
 
 ## Goal
 

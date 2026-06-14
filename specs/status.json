@@ -58,7 +58,7 @@
       "lastVerified": "2026-06-12"
     },
     "008-public-demo-deploy": {
-      "status": "planned",
+      "status": "in_progress",
       "branch": "feature/008-public-demo-deploy",
       "commit": "",
       "evidence": "",
