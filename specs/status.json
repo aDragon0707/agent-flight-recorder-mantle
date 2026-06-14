@@ -1,5 +1,5 @@
 {
-  "currentSpec": "008-public-demo-deploy",
+  "currentSpec": "009-submission-package",
   "items": {
     "000-scaffold": {
       "status": "verified",
@@ -58,11 +58,11 @@
       "lastVerified": "2026-06-12"
     },
     "008-public-demo-deploy": {
-      "status": "in_progress",
+      "status": "verified",
       "branch": "feature/008-public-demo-deploy",
-      "commit": "",
-      "evidence": "",
-      "lastVerified": ""
+      "commit": "8c8179c",
+      "evidence": "docs/evidence/008-public-demo-deploy.md",
+      "lastVerified": "2026-06-14"
     },
     "009-submission-package": {
       "status": "planned",

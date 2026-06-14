@@ -1,6 +1,6 @@
 # Spec 008: Public Demo Deploy
 
-Status: in_progress
+Status: verified
 
 ## Goal
 

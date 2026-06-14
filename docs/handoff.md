@@ -3,10 +3,10 @@
 ## Current State
 
 - Repository: `aDragon0707/agent-flight-recorder-mantle`
-- Current branch: `feature/007-explorer-verification`
-- Current verified spec: `007-explorer-verification`
-- Current spec: `008-public-demo-deploy`
-- Next spec: `008-public-demo-deploy`
+- Current branch: `feature/008-public-demo-deploy`
+- Current verified spec: `008-public-demo-deploy`
+- Current spec: `009-submission-package`
+- Next spec: `009-submission-package`
 
 ## Completed
 
@@ -24,6 +24,7 @@
 - Contract deploy (005B): `ReceiptAnchor` deployed once to Mantle Sepolia (chainId 5003) at `0x69E07961d8c022B81c1c968ef7C1a3955E8D182b` (deploy tx `0x3b7be838fe7384cb37d5ea8dfb49c6ea2788c7766158999834473625fce6568f`). Verified; evidence in `docs/evidence/005-contract-deploy.md`.
 - Anchor transaction (006): web UI adds an `Anchor receipt` action in the `Mantle Anchor` panel. `apps/web/lib/anchor-receipt.ts` builds the `anchorReceipt(receiptHash, statusCode, agentIdHash, taskIdHash)` calldata with viem (`encodeFunctionData`, `keccak256`, `toBytes`) and sends it via the injected provider `eth_sendTransaction`. A real Mantle Sepolia transaction was confirmed by the human wallet: `0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb`. The transaction targeted the deployed `ReceiptAnchor` contract and emitted `ReceiptAnchored`; evidence is in `docs/evidence/006-anchor-transaction.md`.
 - Explorer verification (007): the 006 anchor transaction and its `ReceiptAnchored` event were independently verified via the public Mantle Sepolia RPC endpoint using `viem` from `@afr/web`. Receipt status `success`, `to` equals the deployed `ReceiptAnchor`, single `ReceiptAnchored` log, and all event fields match the 006 evidence. Canonical Mantlescan URL recorded. Read-only; no new transaction, no redeploy, no secret access. Evidence: `docs/evidence/007-explorer-verification.md`.
+- Public demo deploy (008): the `apps/web` Next.js workbench is publicly deployed on Vercel at `https://agent-flight-recorder-mantle.vercel.app`. The Vercel project uses the repository root with `vercel.json` pointing the Next builder at `apps/web/package.json`, so the pnpm workspace dependency on `packages/sacp-core` resolves correctly. SSO deployment protection was disabled for this project so judges can open the demo without logging in. Evidence: `docs/evidence/008-public-demo-deploy.md`.
 
 ## Last Verified Commands
 
@@ -46,12 +47,13 @@ Latest governance dry-run checks:
 - `005-contract-deploy` verified with evidence in `docs/evidence/005-contract-deploy.md`.
 - `006-anchor-transaction` verified with evidence in `docs/evidence/006-anchor-transaction.md`.
 - `007-explorer-verification` verified with evidence in `docs/evidence/007-explorer-verification.md`.
+- `008-public-demo-deploy` verified with evidence in `docs/evidence/008-public-demo-deploy.md`.
 
 ## Known Limits
 
-- Explorer verification (007) is complete via public RPC; `008-public-demo-deploy` is next.
-- No public frontend deployment.
+- Public demo deploy (008) is complete; `009-submission-package` is next.
 - No demo video.
+- DoraHacks submission package is not complete.
 
 ## Resume Instructions
 
@@ -70,6 +72,4 @@ Then run:
 corepack pnpm progress
 ```
 
-Do not start `007-explorer-verification` until `006-anchor-transaction` has been merged back into `feature/project-scaffold`.
-
-For `008-public-demo-deploy`, do not send another wallet transaction, do not redeploy, and do not read `contracts/.env`. Use only public config in the frontend.
+For `009-submission-package`, do not submit or publish the DoraHacks BUIDL page without human confirmation. Do not send another wallet transaction, do not redeploy, and do not read `contracts/.env`.

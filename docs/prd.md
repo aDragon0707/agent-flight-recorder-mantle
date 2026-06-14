@@ -28,6 +28,15 @@
 - [ ] demo video。
 - [ ] DoraHacks BUIDL 页面更新。
 
+Current verified delivery update (2026-06-14):
+
+- [x] Real MetaMask wallet connect and anchor transaction.
+- [x] Mantle Sepolia contract deployment.
+- [x] Mantle Explorer / public RPC verification.
+- [x] Public frontend demo deployment: `https://agent-flight-recorder-mantle.vercel.app`.
+- [ ] Demo video.
+- [ ] DoraHacks BUIDL page update.
+
 一句话定位：
 
 ```text

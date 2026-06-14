@@ -10,7 +10,7 @@
 | 005-contract-deploy | ReceiptAnchor 合约部署 | 合约 | 已验证 | `feature/005-contract-deploy` | `docs/evidence/005-contract-deploy.md` | status、task-board、environments、onchain-verification、evidence、handoff、architecture、project-acceptance |
 | 006-anchor-transaction | 上链锚定交易 | 上链 | 已验证 | `feature/006-anchor-transaction` | `docs/evidence/006-anchor-transaction.md` | status、task-board、evidence、handoff、architecture、onchain-verification、project-acceptance |
 | 007-explorer-verification | 浏览器验证 | 上链 | 已验证 | `feature/007-explorer-verification` | `docs/evidence/007-explorer-verification.md` | status、task-board、evidence、handoff、architecture、onchain-verification、project-acceptance |
-| 008-public-demo-deploy | 公开 demo 部署 | 提交 | 进行中 | `feature/008-public-demo-deploy` | - | status、task-board、spec |
+| 008-public-demo-deploy | 公开 demo 部署 | 提交 | 已验证 | `feature/008-public-demo-deploy` | `docs/evidence/008-public-demo-deploy.md` | status、task-board、evidence、README、environments、handoff、architecture、project-acceptance |
 | 009-submission-package | DoraHacks 提交材料 | 提交 | 计划中 | `feature/009-submission-package` | - | - |
 
 ## 规则

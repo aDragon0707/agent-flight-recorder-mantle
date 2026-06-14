@@ -37,11 +37,21 @@ Contract address:
 
 ## Public Demo
 
-Status: planned
+Status: deployed (008)
 
 Demo URL:
 
 ```text
-not deployed
+https://agent-flight-recorder-mantle.vercel.app
+```
+
+Deployment:
+
+```text
+Platform: Vercel
+Project: agent-flight-recorder-mantle
+Framework: Next.js via @vercel/next builder
+Production URL: https://agent-flight-recorder-mantle.vercel.app
+Deployment URL: https://agent-flight-recorder-mantle-424p4snjl-adragon0707s-projects.vercel.app
 ```
 

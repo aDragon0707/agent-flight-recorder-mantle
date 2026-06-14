@@ -57,8 +57,9 @@ The verifiable diagnosis result hash is written on-chain.
 - [x] Verified anchor transaction spec: `006-anchor-transaction`。`apps/web` 在 `Mantle Anchor` 面板新增 `Anchor receipt` 按钮，仅当 receipt 与 receiptHash 存在、钱包 connected、网络为 `mantle_sepolia` 时启用；点击后由 `apps/web/lib/anchor-receipt.ts` 用 viem 编码 `anchorReceipt(receiptHash, statusCode, agentIdHash, taskIdHash)` 并经注入式 provider `eth_sendTransaction` 发送，`agentIdHash`/`taskIdHash` 为 `keccak256(toBytes(agentId|taskId))`，合约地址常量在 `apps/web/lib/chains.ts`。真实 Mantle Sepolia 交易 `0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb` 已成功写入 `ReceiptAnchor` 并触发 `ReceiptAnchored` event；完整 explorer UI 验证留给 `007-explorer-verification`。
 - [x] `apps/web` 已接真实 MetaMask transaction（`006-anchor-transaction`）。
 - [x] Verified explorer verification spec: `007-explorer-verification`。通过公共 Mantle Sepolia RPC 独立复核 anchor tx `0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb`：receipt status `success`、`to` 等于已部署 `ReceiptAnchor`、唯一 log 解码为 `ReceiptAnchored`，且 `receiptHash`/`agentIdHash`/`taskIdHash`/`statusCode`/`submitter`/`timestamp` 全部与 006 证据一致；canonical Mantlescan URL 已记录供评委核验。本任务只做只读验证，未发新交易、未重部署。
+- [x] Verified public demo deploy spec: `008-public-demo-deploy`。`apps/web` 已通过 Vercel 公开部署，稳定 demo URL 为 `https://agent-flight-recorder-mantle.vercel.app`；Vercel 使用仓库根目录与 `vercel.json`，通过 `@vercel/next` 指向 `apps/web/package.json`，以支持 pnpm workspace 和 `packages/sacp-core`。公网 URL 已返回 HTTP 200，页面内容包含 `Agent Flight Recorder` 与 `Mantle`。
 - [x] `ReceiptAnchor` 已部署到 Mantle Sepolia（`005-contract-deploy`）。
-- [ ] README 尚未包含 deployed contract address、demo URL、explorer link。
+- [x] README 已包含 deployed contract address、demo URL、explorer link。
 - [ ] DoraHacks submission materials 尚未完成。
 
 ## 2. System Context
