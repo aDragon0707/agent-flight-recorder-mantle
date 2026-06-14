@@ -38,6 +38,30 @@ AI/SACP diagnosis runs off-chain.
 The verifiable diagnosis result hash is written on-chain.
 ```
 
+### Implementation Status
+
+本小节只记录当前工程实现状态，不扩大架构范围。
+
+- [x] Root `pnpm workspace` scaffold 已完成。
+- [x] `packages/sacp-core` 已实现最小接口与测试。
+- [x] `apps/web` 已实现三列 workbench shell。
+- [x] `contracts` 已实现 `ReceiptAnchor.sol` 与基础测试。
+- [x] root `lint`、`typecheck`、`test`、`build` 已通过。
+- [x] Governance gate files 已加入，包括 specs、evidence、CI、verify scripts。
+- [x] Verified foundation spec: `000-scaffold`。
+- [x] Verified wallet detection spec: `001-wallet-detection`。`apps/web` 只读取 injected `window.ethereum` 是否存在，并显示 detected / not detected；不连接钱包、不切网络、不发交易。
+- [x] Verified wallet connect spec: `002-wallet-connect`。`apps/web` 只在用户点击 `Connect wallet` 后调用 `eth_requestAccounts`，并显示 connected / rejected / failed 状态；不检查网络、不切网络、不发交易、不持久化地址。
+- [x] Verified Mantle network check spec: `003-mantle-network-check`。`apps/web` 只在钱包 connected 后由用户点击 `Check network` 调用 `eth_chainId`，大小写不敏感判断 `0x138b` / Mantle Sepolia，并显示当前 chain id；不切网络、不发交易、不调用合约、不持久化、不注册钱包事件监听。
+- [x] Verified Mantle network switch spec: `004-mantle-network-switch`。`apps/web` 只在钱包 connected 且网络检查为 `wrong_network` 后显示 `Switch to Mantle Sepolia`，用户点击后调用 `wallet_switchEthereumChain` 和 `0x138b`；`4001` 显示 rejected，`4902` 显示 not added，不自动添加网络，不发交易、不调用合约、不部署。
+- [x] Verified contract deploy spec: `005-contract-deploy`。`ReceiptAnchor` 已部署到 Mantle Sepolia（chainId 5003），地址 `0x69E07961d8c022B81c1c968ef7C1a3955E8D182b`，deploy tx `0x3b7be838fe7384cb37d5ea8dfb49c6ea2788c7766158999834473625fce6568f`；单次真实部署，未调用 `anchorReceipt`、未发前端交易、未做公开 demo 部署。
+- [x] Verified anchor transaction spec: `006-anchor-transaction`。`apps/web` 在 `Mantle Anchor` 面板新增 `Anchor receipt` 按钮，仅当 receipt 与 receiptHash 存在、钱包 connected、网络为 `mantle_sepolia` 时启用；点击后由 `apps/web/lib/anchor-receipt.ts` 用 viem 编码 `anchorReceipt(receiptHash, statusCode, agentIdHash, taskIdHash)` 并经注入式 provider `eth_sendTransaction` 发送，`agentIdHash`/`taskIdHash` 为 `keccak256(toBytes(agentId|taskId))`，合约地址常量在 `apps/web/lib/chains.ts`。真实 Mantle Sepolia 交易 `0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb` 已成功写入 `ReceiptAnchor` 并触发 `ReceiptAnchored` event；完整 explorer UI 验证留给 `007-explorer-verification`。
+- [x] `apps/web` 已接真实 MetaMask transaction（`006-anchor-transaction`）。
+- [x] Verified explorer verification spec: `007-explorer-verification`。通过公共 Mantle Sepolia RPC 独立复核 anchor tx `0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb`：receipt status `success`、`to` 等于已部署 `ReceiptAnchor`、唯一 log 解码为 `ReceiptAnchored`，且 `receiptHash`/`agentIdHash`/`taskIdHash`/`statusCode`/`submitter`/`timestamp` 全部与 006 证据一致；canonical Mantlescan URL 已记录供评委核验。本任务只做只读验证，未发新交易、未重部署。
+- [x] Verified public demo deploy spec: `008-public-demo-deploy`。`apps/web` 已通过 Vercel 公开部署，稳定 demo URL 为 `https://agent-flight-recorder-mantle.vercel.app`；Vercel 使用仓库根目录与 `vercel.json`，通过 `@vercel/next` 指向 `apps/web/package.json`，以支持 pnpm workspace 和 `packages/sacp-core`。公网 URL 已返回 HTTP 200，页面内容包含 `Agent Flight Recorder` 与 `Mantle`。
+- [x] `ReceiptAnchor` 已部署到 Mantle Sepolia（`005-contract-deploy`）。
+- [x] README 已包含 deployed contract address、demo URL、explorer link。
+- [ ] DoraHacks submission materials 尚未完成。
+
 ## 2. System Context
 
 MVP 由四个核心部分组成：
@@ -512,5 +536,7 @@ pnpm workspace
 - 产品范围以 `docs/prd.md` 为准。
 - Git 和发布流程以 `docs/engineering.md` 为准。
 - 工程模块边界以本文档为准。
+- 任务依赖以 `specs/spec-graph.json` 为准。
+- 任务状态以 `specs/status.json` 和 `specs/task-board.md` 为准。
+- 验收证据以 `docs/evidence/` 为准。
 - 若时间冲突，优先完成真实 SACP receipt + Mantle Sepolia anchor，而不是视觉细节。
-

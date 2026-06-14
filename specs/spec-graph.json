@@ -1,0 +1,65 @@
+{
+  "specs": [
+    {
+      "id": "000-scaffold",
+      "title": "Project scaffold",
+      "block": "foundation",
+      "requires": []
+    },
+    {
+      "id": "001-wallet-detection",
+      "title": "Wallet detection",
+      "block": "wallet",
+      "requires": ["000-scaffold"]
+    },
+    {
+      "id": "002-wallet-connect",
+      "title": "Wallet connect",
+      "block": "wallet",
+      "requires": ["001-wallet-detection"]
+    },
+    {
+      "id": "003-mantle-network-check",
+      "title": "Mantle Sepolia network check",
+      "block": "wallet",
+      "requires": ["002-wallet-connect"]
+    },
+    {
+      "id": "004-mantle-network-switch",
+      "title": "Mantle Sepolia network switch",
+      "block": "wallet",
+      "requires": ["003-mantle-network-check"]
+    },
+    {
+      "id": "005-contract-deploy",
+      "title": "ReceiptAnchor Mantle Sepolia deployment",
+      "block": "contract",
+      "requires": ["000-scaffold"]
+    },
+    {
+      "id": "006-anchor-transaction",
+      "title": "Anchor transaction",
+      "block": "anchor",
+      "requires": ["004-mantle-network-switch", "005-contract-deploy"]
+    },
+    {
+      "id": "007-explorer-verification",
+      "title": "Explorer verification",
+      "block": "anchor",
+      "requires": ["006-anchor-transaction"]
+    },
+    {
+      "id": "008-public-demo-deploy",
+      "title": "Public frontend demo deployment",
+      "block": "submission",
+      "requires": ["007-explorer-verification"]
+    },
+    {
+      "id": "009-submission-package",
+      "title": "DoraHacks submission package",
+      "block": "submission",
+      "requires": ["008-public-demo-deploy"]
+    }
+  ]
+}
+

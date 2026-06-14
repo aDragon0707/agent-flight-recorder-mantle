@@ -11,6 +11,7 @@ coverage/
 artifacts/
 cache/
 typechain-types/
+*.tsbuildinfo
 
 # Env and secrets
 .env
@@ -36,3 +37,4 @@ Thumbs.db
 longju-task.md
 prize-breakdown.png
 
+.vercel

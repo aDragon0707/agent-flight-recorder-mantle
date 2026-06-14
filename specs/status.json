@@ -1,0 +1,75 @@
+{
+  "currentSpec": "009-submission-package",
+  "items": {
+    "000-scaffold": {
+      "status": "verified",
+      "branch": "feature/project-scaffold",
+      "commit": "f558c1c",
+      "evidence": "docs/evidence/000-scaffold.md",
+      "lastVerified": "2026-06-10"
+    },
+    "001-wallet-detection": {
+      "status": "verified",
+      "branch": "feature/001-wallet-detection",
+      "commit": "43483b3",
+      "evidence": "docs/evidence/001-wallet-detection.md",
+      "lastVerified": "2026-06-11"
+    },
+    "002-wallet-connect": {
+      "status": "verified",
+      "branch": "feature/002-wallet-connect",
+      "commit": "92b3d48",
+      "evidence": "docs/evidence/002-wallet-connect.md",
+      "lastVerified": "2026-06-11"
+    },
+    "003-mantle-network-check": {
+      "status": "verified",
+      "branch": "feature/003-mantle-network-check",
+      "commit": "d586111",
+      "evidence": "docs/evidence/003-mantle-network-check.md",
+      "lastVerified": "2026-06-12"
+    },
+    "004-mantle-network-switch": {
+      "status": "verified",
+      "branch": "feature/004-mantle-network-switch",
+      "commit": "68b7962",
+      "evidence": "docs/evidence/004-mantle-network-switch.md",
+      "lastVerified": "2026-06-12"
+    },
+    "005-contract-deploy": {
+      "status": "verified",
+      "branch": "feature/005-contract-deploy",
+      "commit": "dfa5bef",
+      "evidence": "docs/evidence/005-contract-deploy.md",
+      "lastVerified": "2026-06-12"
+    },
+    "006-anchor-transaction": {
+      "status": "verified",
+      "branch": "feature/006-anchor-transaction",
+      "commit": "db0aa4a",
+      "evidence": "docs/evidence/006-anchor-transaction.md",
+      "lastVerified": "2026-06-12"
+    },
+    "007-explorer-verification": {
+      "status": "verified",
+      "branch": "feature/007-explorer-verification",
+      "commit": "5baa5c1",
+      "evidence": "docs/evidence/007-explorer-verification.md",
+      "lastVerified": "2026-06-12"
+    },
+    "008-public-demo-deploy": {
+      "status": "verified",
+      "branch": "feature/008-public-demo-deploy",
+      "commit": "8c8179c",
+      "evidence": "docs/evidence/008-public-demo-deploy.md",
+      "lastVerified": "2026-06-14"
+    },
+    "009-submission-package": {
+      "status": "planned",
+      "branch": "feature/009-submission-package",
+      "commit": "",
+      "evidence": "",
+      "lastVerified": ""
+    }
+  }
+}

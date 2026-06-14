@@ -101,6 +101,26 @@ fix: handle wrong wallet network
 - 是否能被 review？
 - 是否引入 secret 或私密信息？
 
+## 4.1 小任务 Git 生命周期
+
+一个“小任务”指一个 `specs/xxx.md`。每个小任务必须形成一个可回溯 Git 闭环：
+
+```text
+spec -> feature branch -> implementation commit -> verification/evidence commit -> push
+```
+
+规则：
+
+- 每个 spec task 使用一个独立 `feature/<spec-id>` 分支。
+- 不在 `main` 上直接开发。
+- 功能实现提交使用 `feat:`、`fix:`、`test:` 或 `chore:`。
+- 验证与证据同步提交使用 `docs:` 或 `chore:`。
+- 标记 `verified` 前必须有 evidence 文件。
+- 任务结束前必须运行 `corepack pnpm progress` 和 `corepack pnpm verify:all`。
+- `docs/project-acceptance.md` 是最终交付总账本，必须随 verified task 同步。
+
+完整执行轮次见 `docs/agent-loop.md`。任何 agent 执行 spec task 前必须按该 loop 做 preflight、启动任务、验证、证据同步、推送和合并回基线。
+
 ## 5. PR / 合并 Checklist
 
 即使是单人开发，也建议用 PR checklist 做自检。
@@ -226,6 +246,29 @@ npm run deploy:mantle-sepolia
 npm run verify:mantle-sepolia
 ```
 
+当前工程使用 Corepack 执行 pnpm。治理门禁命令：
+
+```text
+corepack pnpm verify
+corepack pnpm verify:graph
+corepack pnpm verify:evidence
+corepack pnpm verify:secrets
+corepack pnpm verify:scope
+corepack pnpm verify:docs
+corepack pnpm verify:acceptance
+corepack pnpm verify:all
+```
+
+人类进度视图：
+
+```text
+corepack pnpm progress
+```
+
+`progress` 输出中文任务链路、技术说法、大白话、证据状态、人类判断点和 Project Acceptance 总账本。
+
+每个任务结束前必须通过 `corepack pnpm progress` 和 `corepack pnpm verify:all`。
+
 文档阶段的验证方式：
 
 ```text
@@ -244,12 +287,19 @@ npm run verify:mantle-sepolia
 - `docs/engineering.md`
 - `docs/architecture.md`
 - `README.md` 初版
+- `AGENTS.md`
+- `specs/spec-graph.json`
+- `specs/status.json`
+- `specs/task-board.md`
+- `docs/evidence/`
+- `.github/workflows/ci.yml`
 
 验收：
 
 - 范围清楚。
 - 技术栈清楚。
 - 提交清单清楚。
+- `corepack pnpm verify:all` 通过。
 
 ### Phase 2: 仓库初始化
 

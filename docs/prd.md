@@ -10,6 +10,33 @@
 - 它怎样把 SACP 的价值和 Mantle 的链上可信能力结合起来？
 - 黑客松期间最小可交付版本到底要做完哪些闭环？
 
+### Implementation Status
+
+本小节只记录当前工程进度，不改变 PRD 的需求范围。
+
+- [x] PRD、工程规范、架构文档已完成。
+- [x] GitHub private repo 已创建。
+- [x] `feature/project-scaffold` 分支已创建并推送。
+- [x] monorepo scaffold 已完成。
+- [x] `packages/sacp-core` 最小规则诊断、receipt、canonicalization、hash 与测试已完成。
+- [x] `apps/web` 三列工作台 shell 已完成，可 build。
+- [x] `contracts` `ReceiptAnchor` skeleton 与基础测试已完成。
+- [ ] 真实 MetaMask wallet connect 与 anchor transaction。
+- [ ] Mantle Sepolia 合约部署。
+- [ ] Mantle Explorer contract verification。
+- [ ] public frontend demo deployment。
+- [ ] demo video。
+- [ ] DoraHacks BUIDL 页面更新。
+
+Current verified delivery update (2026-06-14):
+
+- [x] Real MetaMask wallet connect and anchor transaction.
+- [x] Mantle Sepolia contract deployment.
+- [x] Mantle Explorer / public RPC verification.
+- [x] Public frontend demo deployment: `https://agent-flight-recorder-mantle.vercel.app`.
+- [ ] Demo video.
+- [ ] DoraHacks BUIDL page update.
+
 一句话定位：
 
 ```text
@@ -447,4 +474,3 @@ MVP 不强制使用 OpenAI API。
 - 支持 agent reputation score。
 - 支持组织级审计 dashboard。
 - 支持更多链或 agent identity 标准。
-
