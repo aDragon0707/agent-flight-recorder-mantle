@@ -65,7 +65,7 @@
       "lastVerified": "2026-06-14"
     },
     "009-submission-package": {
-      "status": "planned",
+      "status": "in_progress",
       "branch": "feature/009-submission-package",
       "commit": "",
       "evidence": "",

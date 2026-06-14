@@ -1,6 +1,6 @@
 # Spec 009: Submission Package
 
-Status: planned
+Status: in_progress
 
 ## Goal
 

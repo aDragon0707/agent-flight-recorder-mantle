@@ -296,11 +296,12 @@ export function Workbench() {
           Agent Flight Recorder
         </p>
         <h1 className="mt-2 max-w-3xl text-3xl font-semibold leading-tight md:text-5xl">
-          Turn agent claims into auditable SACP receipts.
+          Codex says "done." Make it prove it.
         </h1>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/70 md:text-base">
-          MVP scaffold for a DoraHacks demo: diagnose messy agent output, build a receipt, hash it, and
-          prepare the Mantle anchor flow.
+          Turn AI agent completion claims into SACP receipts, anchor the receipt hash on
+          Mantle, and give reviewers a public explorer proof instead of another
+          unverifiable status update.
         </p>
       </header>
 

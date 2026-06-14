@@ -1,21 +1,17 @@
 # Agent Flight Recorder
 
-Agent Flight Recorder makes AI agent work auditable by turning messy outputs into SACP receipts and anchoring receipt hashes on Mantle.
+> Codex says "done." Agent Flight Recorder makes it prove it.
+
+Agent Flight Recorder is an AI DevTools audit layer for Codex, Claude Code, Cursor-style coding agents, and other autonomous developer workflows. It turns an agent's messy "done / tested / deployed" claim into a structured SACP receipt, hashes it, anchors the receipt hash on Mantle, and gives judges a public explorer proof.
 
 ```text
-messy agent output
--> SACP rule-based diagnosis
--> structured SACP receipt
+agent claim
+-> SACP diagnosis
+-> structured receipt
 -> canonical receipt hash
 -> Mantle Sepolia anchor
--> explorer verification
+-> explorer / RPC verification
 ```
-
-## Why This Exists
-
-AI agents often say "done", "tested", or "safe to proceed" without giving users enough evidence to trust the claim.
-
-Agent Flight Recorder converts those claims into structured SACP receipts, then writes only the receipt hash and minimal audit metadata to Mantle Sepolia. The original agent log stays off-chain, while the receipt fingerprint becomes publicly verifiable.
 
 Core principle:
 
@@ -23,123 +19,126 @@ Core principle:
 No receipt, no trust.
 ```
 
-## Hackathon Scope
+## Judge Links
 
-This repository is for DoraHacks The Turing Test Hackathon 2026.
+| Item | Link |
+| --- | --- |
+| Live demo | https://agent-flight-recorder-mantle.vercel.app |
+| GitHub repo | https://github.com/aDragon0707/agent-flight-recorder-mantle |
+| ReceiptAnchor contract | https://sepolia.mantlescan.xyz/address/0x69E07961d8c022B81c1c968ef7C1a3955E8D182b |
+| Sample anchor transaction | https://sepolia.mantlescan.xyz/tx/0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb |
+| Public demo evidence | docs/evidence/008-public-demo-deploy.md |
+| Explorer verification evidence | docs/evidence/007-explorer-verification.md |
 
-Primary track:
+## Judge Demo In 2 Minutes
+
+1. Open the live demo.
+2. Pick a sample agent output that claims work is done without enough evidence.
+3. Read the SACP diagnosis: status, risk, findings, required fix, and next owner.
+4. Inspect the generated SACP receipt and deterministic receipt hash.
+5. Connect MetaMask on Mantle Sepolia.
+6. Anchor the receipt hash through `ReceiptAnchor`.
+7. Open Mantlescan and verify the emitted `ReceiptAnchored` event.
+
+The demo does not upload private agent logs. The full receipt stays off-chain; only the hash and minimal audit metadata are written to Mantle.
+
+## Why AI DevTools
+
+AI coding agents can produce fluent completion claims that hide uncertainty:
+
+- "Done" without tests.
+- "Deployed" without a URL.
+- "Safe to proceed" after crossing a human-approval boundary.
+- "Fixed" without a reproducible receipt.
+
+Agent Flight Recorder gives those claims a verifiable workflow. It is not another chat UI; it is a receipt layer for agent work. The user can ask: "Where is the receipt?" and then verify that receipt on-chain.
+
+## Why Mantle
+
+Mantle is used as the public audit anchor:
+
+- Cheap enough for demo-scale receipt anchoring.
+- Public enough for judges to verify via Mantlescan.
+- Neutral enough that the app does not need a backend database to prove that a receipt existed.
+- Fits the Turing Test theme: AI work should leave inspectable evidence, not only confident language.
+
+## Verified On-Chain Evidence
 
 ```text
-AI DevTools
+Network: Mantle Sepolia
+Chain ID: 5003
+ReceiptAnchor: 0x69E07961d8c022B81c1c968ef7C1a3955E8D182b
+Deploy tx: 0x3b7be838fe7384cb37d5ea8dfb49c6ea2788c7766158999834473625fce6568f
+Sample anchor tx: 0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb
 ```
 
-MVP goal:
+The sample transaction was independently checked through public Mantle Sepolia RPC in `007-explorer-verification`. The decoded event matches the recorded receipt hash, agent ID hash, task ID hash, status code, submitter, and timestamp.
 
-- Public frontend demo.
-- Rule-based SACP diagnosis.
-- Structured receipt generation.
-- Stable receipt hash.
-- Mantle Sepolia `ReceiptAnchor` contract.
-- Wallet-based anchor transaction.
-- Mantle Explorer verification link.
+## Architecture
 
-## Public Demo
+```mermaid
+flowchart LR
+    A["Codex / Claude Code / Cursor output"] --> B["SACP Core<br/>diagnosis + receipt + hash"]
+    B --> C["Next.js Workbench"]
+    C --> D["MetaMask<br/>user confirms"]
+    D --> E["ReceiptAnchor<br/>Mantle Sepolia"]
+    E --> F["Mantlescan / public RPC proof"]
+```
 
-Public demo URL:
+Trust boundary:
 
 ```text
-https://agent-flight-recorder-mantle.vercel.app
+Raw agent log: browser only
+Full receipt JSON: off-chain
+Receipt hash + status metadata: on-chain
+Wallet credentials: never in repo, never in frontend
 ```
 
-Verified on-chain evidence:
+## Tech Stack
 
-```text
-ReceiptAnchor contract:
-https://sepolia.mantlescan.xyz/address/0x69E07961d8c022B81c1c968ef7C1a3955E8D182b
+| Layer | Technology |
+| --- | --- |
+| Frontend | Next.js App Router, React, TypeScript, Tailwind CSS |
+| Core receipt logic | `packages/sacp-core`, pure TypeScript |
+| Wallet / chain calls | MetaMask injected provider, viem |
+| Smart contract | Solidity, Hardhat, `ReceiptAnchor.sol` |
+| Network | Mantle Sepolia |
+| Deployment | Vercel |
+| Governance | specs, task board, evidence ledgers, PowerShell verify gates, GitHub Actions |
 
-Sample anchor transaction:
-https://sepolia.mantlescan.xyz/tx/0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb
-```
+## What Is Implemented
 
-Demo flow:
-
-```text
-1. Open the public demo URL.
-2. Select or paste messy agent output.
-3. Generate a SACP diagnosis and receipt hash.
-4. Connect MetaMask on Mantle Sepolia.
-5. Anchor the receipt hash to ReceiptAnchor.
-6. Open the Mantle Explorer link to verify the transaction and event.
-```
-
-## Current Status
-
-This repository has moved beyond scaffold stage into a public demo MVP. The scaffold stage remains recorded in the governance evidence for audit continuity.
-
-Implemented:
-
-- Planning docs.
-- Monorepo workspace.
-- `packages/sacp-core` TypeScript package.
-- `apps/web` Next.js workbench.
-- `contracts` Hardhat ReceiptAnchor project.
-- Governance gates: specs, task board, evidence ledger, verify scripts, CI, and PR template.
+- Rule-based SACP diagnosis for messy agent outputs.
+- Deterministic SACP receipt creation and canonical receipt hashing.
 - MetaMask wallet detection and connection.
 - Mantle Sepolia network check and switch.
-- ReceiptAnchor deployment on Mantle Sepolia.
-- Wallet-based anchor transaction.
-- Public RPC / Mantle Explorer verification.
+- `ReceiptAnchor` deployment on Mantle Sepolia.
+- Real wallet-based anchor transaction.
+- Mantle Explorer / public RPC verification.
 - Public Vercel demo deployment.
+- Evidence ledgers for specs `000-008`.
 
-Not implemented yet:
+Not yet complete:
 
 - Demo video.
-- DoraHacks final submission package.
+- DoraHacks final BUIDL page submission.
 
-## Current Docs
-
-- [PRD v0.1](docs/prd.md)
-- [Engineering Workflow](docs/engineering.md)
-- [Architecture v0.1](docs/architecture.md)
-- [Agent Execution Loop](docs/agent-loop.md)
-- [Project Scaffold Tasks](docs/project-scaffold-tasks.md)
-- [Task Board](specs/task-board.md)
-- [Project Acceptance Ledger](docs/project-acceptance.md)
-- [Handoff](docs/handoff.md)
+The earlier scaffold stage remains recorded in the evidence history for audit continuity; the project is now a public demo MVP.
 
 ## Repository Structure
 
 ```text
 agent-flight-recorder-mantle/
-  apps/
-    web/
-      Next.js + TypeScript frontend
-  packages/
-    sacp-core/
-      diagnosis, receipt, canonicalization, hashing
-  contracts/
-    ReceiptAnchor.sol
-    Hardhat deploy and verify scripts
-  docs/
-    prd.md
-    engineering.md
-    architecture.md
-    demo-script.md
-    submission-checklist.md
-  specs/
-    spec-graph.json
-    status.json
-    task-board.md
-    000-scaffold-review.md
-    001-wallet-detection.md
-  README.md
+  apps/web                 Next.js public demo
+  packages/sacp-core       diagnosis, receipt, canonicalization, hashing
+  contracts                ReceiptAnchor Solidity + Hardhat
+  docs                     PRD, architecture, evidence, submission docs
+  specs                    task graph, status, task board
 ```
 
 ## Local Development
 
 This project uses `pnpm` through Corepack.
-
-On Windows, if `pnpm` is not globally available, use `corepack pnpm`:
 
 ```powershell
 corepack prepare pnpm@10 --activate
@@ -148,80 +147,30 @@ corepack pnpm test
 corepack pnpm build
 ```
 
-When `pnpm` is available as a shell command:
-
-```bash
-pnpm install
-pnpm test
-pnpm build
-```
-
 Useful commands:
 
 ```bash
-pnpm dev
-pnpm lint
-pnpm typecheck
-pnpm test
-pnpm build
-pnpm --filter @afr/sacp-core test
-pnpm --filter @afr/web build
-pnpm --filter @afr/contracts test
-```
-
-Governance checks:
-
-```bash
+corepack pnpm dev
+corepack pnpm lint
+corepack pnpm typecheck
+corepack pnpm test
+corepack pnpm build
+corepack pnpm progress
 corepack pnpm verify:all
-corepack pnpm verify:graph
-corepack pnpm verify:evidence
-corepack pnpm verify:secrets
-corepack pnpm verify:scope
-corepack pnpm verify:docs
 ```
 
-Before starting a new task, read:
+## Documentation
 
-```text
-AGENTS.md
-specs/status.json
-specs/task-board.md
-docs/handoff.md
-```
-
-## Technology Decisions
-
-- Frontend: `Next.js App Router + TypeScript + Tailwind CSS`
-- Web3: `wagmi + viem`
-- Core package: browser-safe TypeScript
-- Smart contract: `Solidity + Hardhat`
-- Network: `Mantle Sepolia`
-- Package manager: `pnpm workspace`
-
-Mantle Sepolia:
-
-```text
-RPC: https://rpc.sepolia.mantle.xyz
-Chain ID: 5003
-Symbol: MNT
-Explorer: https://sepolia.mantlescan.xyz/
-ReceiptAnchor: 0x69E07961d8c022B81c1c968ef7C1a3955E8D182b
-Deploy tx: 0x3b7be838fe7384cb37d5ea8dfb49c6ea2788c7766158999834473625fce6568f
-Sample anchor tx: 0x0aea4a4f414551d0f4d45685240285795f6f8b81c89976db572477f752b877cb
-```
+- [PRD v0.1](docs/prd.md)
+- [Engineering Workflow](docs/engineering.md)
+- [Architecture v0.1](docs/architecture.md)
+- [Submission Readiness Audit](docs/submission-readiness-audit.md)
+- [Demo Script](docs/demo-script.md)
+- [Submission Checklist](docs/submission-checklist.md)
+- [Project Acceptance Ledger](docs/project-acceptance.md)
+- [Handoff](docs/handoff.md)
 
 ## Security Boundary
-
-The MVP does not store private agent logs on-chain.
-
-On-chain data is limited to:
-
-- `receiptHash`
-- `statusCode`
-- `agentIdHash`
-- `taskIdHash`
-- `submitter`
-- `timestamp`
 
 Never commit:
 
@@ -231,14 +180,11 @@ Never commit:
 - API keys
 - cookies, tokens, or sessions
 
-## Submission Checklist
+The MVP does not store private agent logs on-chain. On-chain data is limited to:
 
-Before DoraHacks submission, this repo should include:
-
-- Public demo URL: `https://agent-flight-recorder-mantle.vercel.app`.
-- Deployed Mantle Sepolia contract address: `0x69E07961d8c022B81c1c968ef7C1a3955E8D182b`.
-- Mantle Explorer transaction or contract link.
-- Demo video, at least 2 minutes.
-- Setup instructions.
-- Architecture overview.
-- Updated DoraHacks BUIDL page.
+- `receiptHash`
+- `statusCode`
+- `agentIdHash`
+- `taskIdHash`
+- `submitter`
+- `timestamp`
