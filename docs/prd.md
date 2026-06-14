@@ -21,10 +21,10 @@
 - [x] `packages/sacp-core` 最小规则诊断、receipt、canonicalization、hash 与测试已完成。
 - [x] `apps/web` 三列工作台 shell 已完成，可 build。
 - [x] `contracts` `ReceiptAnchor` skeleton 与基础测试已完成。
-- [ ] 真实 MetaMask wallet connect 与 anchor transaction。
-- [ ] Mantle Sepolia 合约部署。
-- [ ] Mantle Explorer contract verification。
-- [ ] public frontend demo deployment。
+- [x] 真实 MetaMask wallet connect 与 anchor transaction。
+- [x] Mantle Sepolia 合约部署。
+- [x] Mantle Explorer / public RPC verification。
+- [x] public frontend demo deployment。
 - [ ] demo video。
 - [ ] DoraHacks BUIDL 页面更新。
 
@@ -34,13 +34,16 @@ Current verified delivery update (2026-06-14):
 - [x] Mantle Sepolia contract deployment.
 - [x] Mantle Explorer / public RPC verification.
 - [x] Public frontend demo deployment: `https://agent-flight-recorder-mantle.vercel.app`.
+- [x] GitHub repository is public: `https://github.com/aDragon0707/agent-flight-recorder-mantle`.
 - [ ] Demo video.
 - [ ] DoraHacks BUIDL page update.
 
 一句话定位：
 
 ```text
-Agent Flight Recorder turns messy AI agent work into auditable SACP receipts and anchors receipt hashes on Mantle.
+Codex says "done." Agent Flight Recorder makes it prove it.
+
+Agent Flight Recorder turns AI agent work claims into auditable SACP receipts and anchors receipt hashes on Mantle.
 ```
 
 中文解释：
