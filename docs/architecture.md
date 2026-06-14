@@ -15,6 +15,42 @@ messy agent output
 -> explorer verification
 ```
 
+面向评委的一句话架构：
+
+```text
+Codex / Claude Code / Cursor-style agent output becomes a SACP receipt;
+only the receipt hash and minimal audit metadata are anchored on Mantle.
+```
+
+## Judge-Facing Architecture Summary
+
+`Agent Flight Recorder` 是一个 AI DevTools receipt layer，不是普通 AI chat 页面。它把 agent 的完成声明拆成三层：
+
+1. **Off-chain diagnosis**：浏览器内用 `packages/sacp-core` 把 messy output 转成 SACP diagnosis 和 receipt。
+2. **Deterministic fingerprint**：对 canonical receipt 做稳定 hash，得到可重复验证的 `receiptHash`。
+3. **On-chain anchor**：用户用 MetaMask 在 Mantle Sepolia 调用 `ReceiptAnchor.anchorReceipt(...)`，链上只保存 hash、status、agent/task hash、submitter、timestamp。
+
+```mermaid
+flowchart LR
+    Agent["Codex / Claude Code / Cursor output"] --> Core["SACP Core<br/>diagnosis + receipt + canonical hash"]
+    Core --> UI["Next.js Workbench<br/>judge-facing demo"]
+    UI --> Wallet["MetaMask<br/>human approval"]
+    Wallet --> Contract["ReceiptAnchor<br/>Mantle Sepolia"]
+    Contract --> Proof["Mantlescan + public RPC<br/>verifiable proof"]
+```
+
+关键安全边界：
+
+| Data | Location | Why |
+| --- | --- | --- |
+| Raw agent output | Browser memory | Avoid publishing private work logs. |
+| Full SACP receipt | Browser / UI display | Human-readable audit record. |
+| Receipt hash | Mantle Sepolia | Public proof the receipt existed. |
+| Agent/task hashes | Mantle Sepolia | Linkable audit metadata without exposing full context. |
+| Wallet credentials | Never in repo or frontend | Wallet remains user-controlled. |
+
+这也是本项目和“只展示 AI 总结”的区别：评委能从 demo 一路点到 Mantlescan，验证确实发生了一次链上 receipt anchor。
+
 优先级：
 
 - 第一优先级：评委能在 2-5 分钟内看懂并跑完整 demo。
